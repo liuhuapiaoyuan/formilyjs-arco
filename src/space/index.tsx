@@ -1,7 +1,6 @@
 import React from 'react'
 import { Space as ArcoSpace, SpaceProps } from '@arco-design/web-react'
 import * as ReactIs from 'react-is'
-import { isReactElement } from '@formily/shared'
 
 // 递归过滤，只要是 就一直过滤
 function renderChildren(children?: React.ReactNode) {
