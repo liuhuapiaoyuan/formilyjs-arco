@@ -1,49 +1,51 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { Card, Collapse, Empty } from "@arco-design/web-react";
-import {   CollapseProps , CollapseItemProps } from "@arco-design/web-react/es/collapse";
-import { ArrayField } from "@formily/core";
+import React, { Fragment, useState, useEffect } from 'react'
+import { Card, Collapse, Empty } from '@arco-design/web-react'
+import {
+  CollapseProps,
+  CollapseItemProps,
+} from '@arco-design/web-react/es/collapse'
+import { ArrayField } from '@formily/core'
 import {
   RecursionField,
   useField,
   useFieldSchema,
   observer,
   ISchema,
-} from "@formily/react";
-import { toArr } from "@formily/shared";
-import cls from "classnames";
-import ArrayBase, { ArrayBaseMixins, IArrayBaseProps } from "../array-base";
-import { usePrefixCls } from "../__builtins__";
-import "./index.scss";
+} from '@formily/react'
+import cls from 'classnames'
+import ArrayBase, { ArrayBaseMixins, IArrayBaseProps } from '../array-base'
+import { usePrefixCls } from '../__builtins__'
+import './index.scss'
 
 export interface IArrayCollapseProps extends CollapseProps {
-  defaultOpenPanelCount?: number;
-  prefixCls?: string;
-  arrayBaseProps?: IArrayBaseProps;
+  defaultOpenPanelCount?: number
+  prefixCls?: string
+  arrayBaseProps?: IArrayBaseProps
 }
 type ComposedArrayCollapse = React.FC<IArrayCollapseProps> &
   ArrayBaseMixins & {
-    CollapsePanel?: React.FC<CollapseItemProps>;
-  };
+    CollapsePanel?: React.FC<CollapseItemProps>
+  }
 
 const isAdditionComponent = (schema: ISchema) => {
-  return schema["x-component"]?.indexOf("Addition") > -1;
-};
+  return schema['x-component']?.indexOf('Addition') > -1
+}
 
 const isIndexComponent = (schema: ISchema) => {
-  return schema["x-component"]?.indexOf("Index") > -1;
-};
+  return schema['x-component']?.indexOf('Index') > -1
+}
 
 const isRemoveComponent = (schema: ISchema) => {
-  return schema["x-component"]?.indexOf("Remove") > -1;
-};
+  return schema['x-component']?.indexOf('Remove') > -1
+}
 
 const isMoveUpComponent = (schema: ISchema) => {
-  return schema["x-component"]?.indexOf("MoveUp") > -1;
-};
+  return schema['x-component']?.indexOf('MoveUp') > -1
+}
 
 const isMoveDownComponent = (schema: ISchema) => {
-  return schema["x-component"]?.indexOf("MoveDown") > -1;
-};
+  return schema['x-component']?.indexOf('MoveDown') > -1
+}
 
 const isOperationComponent = (schema: ISchema) => {
   return (
@@ -51,38 +53,38 @@ const isOperationComponent = (schema: ISchema) => {
     isRemoveComponent(schema) ||
     isMoveDownComponent(schema) ||
     isMoveUpComponent(schema)
-  );
-};
+  )
+}
 
-const range = (count: number) => Array.from({ length: count }).map((_, i) => i);
+const range = (count: number) => Array.from({ length: count }).map((_, i) => i)
 
 const takeDefaultActiveKeys = (
   dataSourceLength: number,
   defaultOpenPanelCount = Infinity
 ) => {
-  if (dataSourceLength < defaultOpenPanelCount) return range(dataSourceLength);
-  return range(defaultOpenPanelCount);
-};
+  if (dataSourceLength < defaultOpenPanelCount) return range(dataSourceLength)
+  return range(defaultOpenPanelCount)
+}
 
 const insertActiveKeys = (activeKeys: number[], index: number) => {
-  if (activeKeys.length <= index) return activeKeys.concat(index);
+  if (activeKeys.length <= index) return activeKeys.concat(index)
   return activeKeys.reduce((buf: number[], key) => {
-    if (key < index) return buf.concat(key);
-    if (key === index) return buf.concat([key, key + 1]);
-    return buf.concat(key + 1);
-  }, []);
-};
+    if (key < index) return buf.concat(key)
+    if (key === index) return buf.concat([key, key + 1])
+    return buf.concat(key + 1)
+  }, [])
+}
 
 export const ArrayCollapse: ComposedArrayCollapse = observer(
   (props: IArrayCollapseProps) => {
-    const { arrayBaseProps, ...respProps } = props;
-    const field = useField<ArrayField>();
-    const dataSource = Array.isArray(field.value) ? field.value : [];
+    const { arrayBaseProps, ...respProps } = props
+    const field = useField<ArrayField>()
+    const dataSource = Array.isArray(field.value) ? field.value : []
     const [activeKeys, setActiveKeys] = useState<number[]>(
       takeDefaultActiveKeys(dataSource.length, respProps.defaultOpenPanelCount)
-    );
-    const schema = useFieldSchema();
-    const prefixCls = usePrefixCls("array-collapse", respProps);
+    )
+    const schema = useFieldSchema()
+    const prefixCls = usePrefixCls('array-collapse', respProps)
     useEffect(() => {
       if (!field.modified && dataSource.length) {
         setActiveKeys(
@@ -90,76 +92,77 @@ export const ArrayCollapse: ComposedArrayCollapse = observer(
             dataSource.length,
             respProps.defaultOpenPanelCount
           )
-        );
+        )
       }
-    }, [dataSource.length, field]);
-    if (!schema) throw new Error("can not found schema object");
+    }, [dataSource.length, field])
+    if (!schema) throw new Error('can not found schema object')
 
     const renderAddition = () => {
       return schema.reduceProperties((addition, schema, key) => {
         if (isAdditionComponent(schema)) {
-          return <RecursionField schema={schema} name={key} />;
+          return <RecursionField schema={schema} name={key} />
         }
-        return addition;
-      }, null);
-    };
+        return addition
+      }, null)
+    }
     const renderEmpty = () => {
-      if (dataSource.length) return;
+      if (dataSource.length) return
       return (
         <Card className={cls(`${prefixCls}-item`, respProps.className)}>
           <Empty />
         </Card>
-      );
-    };
+      )
+    }
 
     const renderItems = () => {
       return (
         <Collapse
           {...respProps}
-          activeKey={activeKeys as any}
-          onChange={(_key , keys: string[]) => setActiveKeys(toArr(keys).map(Number))}
+          activeKey={activeKeys.map((z) => `${z}`)}
+          onChange={(_key, keys: string[]) => setActiveKeys(keys.map(Number))}
           className={cls(`${prefixCls}-item`, respProps.className)}
         >
           {dataSource.map((item, index) => {
             const items = Array.isArray(schema.items)
               ? schema.items[index] || schema.items[0]
-              : schema.items;
+              : schema.items
 
             const panelProps = field
               .query(`${field.address}.${index}`)
-              .get("componentProps");
-            const props: CollapseItemProps = items?.["x-component-props"];
+              .get('componentProps')
+            const props: CollapseItemProps = items?.['x-component-props']
             const extra = (
               <ArrayBase.Item index={index} record={item}>
                 <RecursionField
                   schema={items as any}
                   name={index}
                   filterProperties={(schema) => {
-                    if (!isOperationComponent(schema)) return false;
-                    return true;
+                    if (!isOperationComponent(schema)) return false
+                    return true
                   }}
                   onlyRenderProperties
                 />
                 {props?.extra}
               </ArrayBase.Item>
-            );
+            )
 
             const content = (
               <RecursionField
                 schema={items as any}
                 name={index}
                 filterProperties={(schema) => {
-                  if (isIndexComponent(schema)) return false;
-                  if (isOperationComponent(schema)) return false;
-                  return true;
+                  if (isIndexComponent(schema)) return false
+                  if (isOperationComponent(schema)) return false
+                  return true
                 }}
               />
-            );
+            )
             return (
               <Collapse.Item
                 {...props}
                 {...panelProps}
                 key={index}
+                name={index + ''}
                 //  header={header()}
                 // header 仅为 string 时，extra 才可用
                 extra={extra}
@@ -168,39 +171,39 @@ export const ArrayCollapse: ComposedArrayCollapse = observer(
                   {content}
                 </ArrayBase.Item>
               </Collapse.Item>
-            );
+            )
           })}
         </Collapse>
-      );
-    };
+      )
+    }
     return (
       <ArrayBase
         {...arrayBaseProps}
         onAdd={(index) => {
-          setActiveKeys(insertActiveKeys(activeKeys, index));
-          arrayBaseProps?.onAdd?.(index);
+          setActiveKeys(insertActiveKeys(activeKeys, index))
+          arrayBaseProps?.onAdd?.(index)
         }}
       >
         {renderEmpty()}
         {renderItems()}
         {renderAddition()}
       </ArrayBase>
-    );
+    )
   }
-);
+)
 
 const CollapsePanel: React.FC<CollapseItemProps> = ({ children }) => {
-  return <Fragment>{children}</Fragment>;
-};
+  return <Fragment>{children}</Fragment>
+}
 
-CollapsePanel.displayName = "CollapsePanel";
+CollapsePanel.displayName = 'CollapsePanel'
 
 ArrayCollapse.defaultProps = {
   defaultOpenPanelCount: 5,
-};
-ArrayCollapse.displayName = "ArrayCollapse";
-ArrayCollapse.CollapsePanel = CollapsePanel;
+}
+ArrayCollapse.displayName = 'ArrayCollapse'
+ArrayCollapse.CollapsePanel = CollapsePanel
 
-ArrayBase.mixin(ArrayCollapse);
+ArrayBase.mixin(ArrayCollapse)
 
-export default ArrayCollapse;
+export default ArrayCollapse

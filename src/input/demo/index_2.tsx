@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input, FormItem, FormButtonGroup, Submit } from '@formily/semi'
 import { createForm } from '@formily/core'
-import { FormProvider, createSchemaField } from '@formily/react'
+import { FormProvider, createSchemaField, FormConsumer } from '@formily/react'
 
 const SchemaField = createSchemaField({
   components: {
@@ -43,6 +43,13 @@ const schema = {
 export default () => (
   <FormProvider form={form}>
     <SchemaField schema={schema} />
+    <FormConsumer>
+      {() => (
+        <code>
+          <pre>{JSON.stringify(form.values, null, 2)}</pre>
+        </code>
+      )}
+    </FormConsumer>
     <FormButtonGroup>
       <Submit onSubmit={console.log}>提交</Submit>
     </FormButtonGroup>

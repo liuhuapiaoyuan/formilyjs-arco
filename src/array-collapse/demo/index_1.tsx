@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react'
 import {
   FormItem,
   Input,
   ArrayCollapse,
   FormButtonGroup,
   Submit,
-} from "@formily/semi";
-import { createForm } from "@formily/core";
-import { FormProvider, createSchemaField } from "@formily/react";
-import { Button } from "@arco-design/web-react";
+} from '@formily/semi'
+import { createForm } from '@formily/core'
+import { FormProvider, createSchemaField, FormConsumer } from '@formily/react'
+import { Button } from '@arco-design/web-react'
 
 const SchemaField = createSchemaField({
   components: {
@@ -16,13 +16,16 @@ const SchemaField = createSchemaField({
     Input,
     ArrayCollapse,
   },
-});
+})
 
-const form = createForm();
+const form = createForm()
 
 export default () => {
   return (
     <FormProvider form={form}>
+      <FormConsumer>
+        {() => <div>{JSON.stringify(form.values)}</div>}
+      </FormConsumer>
       <SchemaField>
         <SchemaField.Array
           name="string_array"
@@ -37,7 +40,7 @@ export default () => {
           <SchemaField.Void
             x-component="ArrayCollapse.CollapsePanel"
             x-component-props={{
-              header: "字符串数组",
+              header: '字符串数组',
             }}
           >
             <SchemaField.Void x-component="ArrayCollapse.Index" />
@@ -66,7 +69,7 @@ export default () => {
           <SchemaField.Object
             x-component="ArrayCollapse.CollapsePanel"
             x-component-props={{
-              header: "对象数组",
+              header: '对象数组',
             }}
           >
             <SchemaField.Void x-component="ArrayCollapse.Index" />
@@ -98,7 +101,7 @@ export default () => {
           <SchemaField.Void
             x-component="ArrayCollapse.CollapsePanel"
             x-component-props={{
-              header: "字符串数组",
+              header: '字符串数组',
             }}
           >
             <SchemaField.Void x-component="ArrayCollapse.Index" />
@@ -117,7 +120,7 @@ export default () => {
             x-component="ArrayCollapse.Addition"
             title="添加条目（unshift）"
             x-component-props={{
-              method: "unshift",
+              method: 'unshift',
             }}
           />
         </SchemaField.Array>
@@ -127,15 +130,15 @@ export default () => {
           onClick={() => {
             form.setInitialValues({
               array: Array.from({ length: 10 }).map(() => ({
-                input: "default value",
+                input: 'default value',
               })),
               string_array: Array.from({ length: 10 }).map(
-                () => "default value"
+                () => 'default value'
               ),
               string_array_unshift: Array.from({ length: 10 }).map(
-                () => "default value"
+                () => 'default value'
               ),
-            });
+            })
           }}
         >
           加载默认数据
@@ -143,5 +146,5 @@ export default () => {
         <Submit onSubmit={console.log}>提交</Submit>
       </FormButtonGroup>
     </FormProvider>
-  );
-};
+  )
+}
