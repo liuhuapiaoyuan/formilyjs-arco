@@ -1,5 +1,5 @@
-import { Card } from "@arco-design/web-react";
+import { Card } from '@arco-design/web-react'
 
-export { Card };
+export { Card }
 
-export default Card;
+export default Card

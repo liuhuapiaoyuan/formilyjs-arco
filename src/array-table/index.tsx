@@ -114,8 +114,7 @@ const useArrayTableSources = () => {
   return parseArrayItems(schema.items)
 }
 
-const useArrayTableColumns = (
-  dataSource: any[],
+const getTableColumns = (
   sources: ObservableColumnSource[]
 ): TableProps<any>['columns'] => {
   return sources.reduce(
@@ -126,8 +125,7 @@ const useArrayTableColumns = (
         ...columnProps,
         key,
         dataIndex: name,
-        render: (value: any, record: any) => {
-          const index = dataSource.indexOf(record)
+        render: (value: any, record: any, index) => {
           const children = (
             <ArrayBase.Item index={index} record={record}>
               <RecursionField
@@ -274,7 +272,6 @@ const ArrayTableComponentsContext = React.createContext<{
 const ArrayTableWrapper: React.FC = (props: any) => {
   const { ref, field } = useContext(ArrayTableComponentsContext)
   const prefixCls = usePrefixCls('formily-array-table')
-
   const addTdStyles = (node: HTMLElement) => {
     const helper = document.body.querySelector(`.${prefixCls}-sort-helper`)
     if (helper) {
@@ -314,9 +311,9 @@ const ArrayTableWrapper: React.FC = (props: any) => {
  * 原因：如果每次render时Table每次都拿到一个新的对象。Table内部是lodash.merge深拷贝了一份这个对象，导致components.body.row & wrapper每次都会变。
  * 当在array-table中用如文件上传组件时，会将原先的input销毁，导致没法监听到组件的onChange事件
  */
-const arrayTableComponents = {
+const arrayTableComponents: TableProps['components'] = {
   body: {
-    wrapper: ArrayTableWrapper,
+    tbody: ArrayTableWrapper,
     row: forwardRef((props: any, ref) => {
       return <SortableRow ref={ref} index={props.index || 0} {...props} />
     }),
@@ -330,7 +327,7 @@ export const ArrayTable: ComposedArrayTable = observer(
     const prefixCls = usePrefixCls('array-table')
     const dataSource = Array.isArray(field.value) ? field.value.slice() : []
     const sources = useArrayTableSources()
-    const columns = useArrayTableColumns(dataSource, sources)
+    const columns = getTableColumns(sources)
     const pagination = isBool(props.pagination) ? {} : props.pagination
     const addition = useAddition()
     const defaultRowKey = (record?: any) => {

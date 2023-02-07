@@ -1,5 +1,5 @@
 @import '../__styles__/theme.scss';
-$form-item-cls: 'formily-semi-item';
+$form-item-cls: '#{$semi-form-prefix}-item';
 
 @import './grid.scss';
 @import './animation.scss';

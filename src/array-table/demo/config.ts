@@ -1,4 +1,4 @@
-import { ISchema } from "@formily/json-schema";
+import { ISchema } from '@formily/json-schema'
 
 export default {
   type: 'object',
@@ -11,8 +11,8 @@ export default {
         pagination: { pageSize: 10 },
         scroll: { x: '100%' },
         arrayBaseProps: {
-          onRemove: console.log
-        }
+          onRemove: console.log,
+        },
       },
       items: {
         type: 'object',
@@ -20,13 +20,17 @@ export default {
           column1: {
             type: 'void',
             'x-component': 'ArrayTable.Column',
-            'x-component-props': { width: 50, title: 'Sort', align: 'center' },
+            'x-component-props': {
+              width: 50,
+              title: '排序',
+              align: 'center',
+            },
             properties: {
               sort: {
                 type: 'void',
-                'x-component': 'ArrayTable.SortHandle'
-              }
-            }
+                'x-component': 'ArrayTable.SortHandle',
+              },
+            },
           },
           column2: {
             type: 'void',
@@ -106,18 +110,18 @@ export default {
               },
             },
           },
-        }
+        },
       },
       properties: {
         add: {
           type: 'void',
           'x-component': 'ArrayTable.Addition',
           'x-component-props': {
-            method: 'unshift'
+            method: 'unshift',
           },
           title: '添加条目',
         },
       },
-    }
-  }
+    },
+  },
 } as ISchema

@@ -13,19 +13,20 @@ $array-base-prefix-cls: '#{$semi-form-prefix}-array-base';
   }
 }
 
-.#{array-base-prefix-cls}-sort-handle {
+.#{$array-base-prefix-cls}-sort-handle {
   cursor: move;
   color: #888 !important;
 }
 
 .#{$array-base-prefix-cls}-addition {
   transition: all .25s ease-in-out;
-}
+} 
 
 .#{$array-base-prefix-cls}-move-down {
   transition: all .25s ease-in-out;
   font-size: 16px;
   margin-left: 6px;
+  cursor: pointer;
 
   &:hover {
     color: $primary-5;
@@ -36,6 +37,7 @@ $array-base-prefix-cls: '#{$semi-form-prefix}-array-base';
   transition: all .25s ease-in-out;
   font-size: 16px;
   margin-left: 6px;
+  cursor: pointer;
 
   &:hover {
     color: $primary-5;

@@ -4,7 +4,5 @@ export const usePrefixCls = (
     prefixCls?: string
   }
 ) => {
-  return props?.prefixCls ?? `formily-semi${
-    tag ? `-${tag}` : ''
-  }`;
+  return props?.prefixCls ?? `formily-arco${tag ? `-${tag}` : ''}`
 }

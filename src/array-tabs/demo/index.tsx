@@ -1,61 +1,77 @@
-import React, { useRef } from "react";
-import { ISchema } from "@formily/react";
-import { SchemaForm } from "@formily/semi";
-import { Button } from "@arco-design/web-react";
+import React, { useRef } from 'react'
+import { FormConsumer, FormProvider, ISchema } from '@formily/react'
+import { SchemaForm } from '@formily/semi'
+import { Button, Typography } from '@arco-design/web-react'
+import { createForm } from '@formily/core'
 
 const schema: ISchema = {
-  type: "object",
+  type: 'object',
   properties: {
     string_array: {
-      type: "array",
-      title: "字符串数组",
-      "x-decorator": "FormItem",
+      type: 'array',
+      title: '字符串数组',
+      'x-decorator': 'FormItem',
       maxItems: 3,
-      "x-component": "ArrayTabs",
+      'x-component': 'ArrayTabs',
       items: {
-        type: "string",
-        "x-decorator": "FormItem",
+        type: 'string',
+        'x-decorator': 'FormItem',
         required: true,
-        "x-component": "Input",
+        'x-component': 'Input',
+        'x-component-props': {
+          autoFocus: true,
+        },
       },
     },
     array: {
-      type: "array",
-      title: "对象数组",
-      "x-decorator": "FormItem",
+      type: 'array',
+      title: '对象数组',
+      'x-decorator': 'FormItem',
       maxItems: 3,
-      "x-component": "ArrayTabs",
+      'x-component': 'ArrayTabs',
       items: {
-        type: "object",
+        type: 'object',
         properties: {
           aaa: {
-            type: "string",
-            "x-decorator": "FormItem",
-            title: "AAA",
+            type: 'string',
+            'x-decorator': 'FormItem',
+            title: 'AAA',
             required: true,
-            "x-component": "Input",
+            'x-component': 'Input',
           },
           bbb: {
-            type: "string",
-            "x-decorator": "FormItem",
-            title: "BBB",
+            type: 'string',
+            'x-decorator': 'FormItem',
+            title: 'BBB',
             required: true,
-            "x-component": "Input",
+            'x-component': 'Input',
           },
         },
       },
     },
   },
-};
+}
+const form = createForm()
 
 export default () => {
-  const formRef = useRef<any>();
+  const formRef = useRef<any>()
   return (
     <div>
-      <SchemaForm ref={formRef} schema={schema} />
-      <Button onClick={() => formRef?.current?.getForm?.()?.submit()}>
-        提交
-      </Button>
+      <FormProvider form={form}>
+        <SchemaForm ref={formRef} schema={schema} />
+        <FormConsumer>
+          {(form) => (
+            <div>
+              <Typography.Text code>
+                {JSON.stringify(form?.values)}
+              </Typography.Text>
+            </div>
+          )}
+        </FormConsumer>
+        <Button onClick={() => formRef?.current?.getForm?.()?.submit()}>
+          提交
+        </Button>
+      </FormProvider>
     </div>
-  );
-};
+  )
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Form, Reset, Upload, FormItem } from '@formily/semi'
 import { createForm } from '@formily/core'
 import { FormConsumer, Field, FormProvider } from '@formily/react'
-import { Input } from '@arco-design/web-react'
+import { Input, Typography } from '@arco-design/web-react'
 
 const form = createForm({
   initialValues: {
@@ -67,7 +67,9 @@ const Demo = () => {
       />
       <Reset>Reset</Reset>
       <FormConsumer>
-        {() => <div>{JSON.stringify(form.values)}</div>}
+        {() => (
+          <Typography.Text code>{JSON.stringify(form.values)}</Typography.Text>
+        )}
       </FormConsumer>
     </FormProvider>
   )

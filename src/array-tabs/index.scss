@@ -1,4 +1,7 @@
-$prefix: formily-semi-tabs;
+@import '../__styles__/theme.scss';
+
+$prefix: '#{$semi-form-prefix}-tabs';
+
 .#{$prefix} {
   .semi-tabs-bar {
     display: flex;
