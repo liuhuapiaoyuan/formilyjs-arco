@@ -4,98 +4,100 @@
  * 3. 行内布局
  * 4. 吸底布局
  */
-import React, { useRef, useLayoutEffect, useState } from "react";
-import StickyBox, { StickyBoxMode } from "react-sticky-box";
-import { Space } from "@arco-design/web-react";
-import { SpaceProps } from "@arco-design/web-react/es/space";
-import { BaseItem, IFormItemProps } from "../form-item";
-import { usePrefixCls } from "../__builtins__";
-import cls from "classnames";
+import React, { useRef, useLayoutEffect, useState } from 'react'
+import StickyBox from 'react-sticky-box'
+import { Space } from '@arco-design/web-react'
+import { SpaceProps } from '@arco-design/web-react/es/space'
+import { BaseItem, IFormItemProps } from '../form-item'
+import { usePrefixCls } from '../__builtins__'
+import cls from 'classnames'
+
+import './index.scss'
 interface IStickyProps {
-  offsetTop?: number;
-  offsetBottom?: number;
-  bottom?: boolean;
-  onChangeMode?: (
+  offsetTop?: number
+  offsetBottom?: number
+  bottom?: boolean
+  /* onChangeMode?: (
     oldMode: StickyBoxMode | undefined,
     newMode: StickyBoxMode
-  ) => any;
-  style?: React.CSSProperties;
-  className?: string;
-  padding?: number;
-  align?: React.CSSProperties["textAlign"];
+  ) => any */
+  style?: React.CSSProperties
+  className?: string
+  padding?: number
+  align?: React.CSSProperties['textAlign']
 }
 
-type IFormButtonGroupProps = Omit<SpaceProps, "align"> & {
-  align?: React.CSSProperties["textAlign"];
-};
+type IFormButtonGroupProps = Omit<SpaceProps, 'align'> & {
+  align?: React.CSSProperties['textAlign']
+}
 
 type ComposedButtonGroup = React.FC<IFormButtonGroupProps> & {
-  Sticky: React.FC<IStickyProps>;
+  Sticky: React.FC<IStickyProps>
   FormItem: React.FC<
     IFormItemProps & {
-      spacing?: SpaceProps["spacing"];
+      size?: SpaceProps['size']
     }
-  >;
-};
+  >
+}
 
 function getInheritedBackgroundColor(el: HTMLElement) {
   // get default style for current browser
-  const defaultStyle = getDefaultBackground(); // typically "rgba(0, 0, 0, 0)"
+  const defaultStyle = getDefaultBackground() // typically "rgba(0, 0, 0, 0)"
 
   // get computed color for el
-  const backgroundColor = window.getComputedStyle(el).backgroundColor;
+  const backgroundColor = window.getComputedStyle(el).backgroundColor
 
   // if we got a real value, return it
-  if (backgroundColor != defaultStyle) return backgroundColor;
+  if (backgroundColor != defaultStyle) return backgroundColor
 
   // if we've reached the top parent el without getting an explicit color, return default
-  if (!el.parentElement) return defaultStyle;
+  if (!el.parentElement) return defaultStyle
 
   // otherwise, recurse and try again on parent element
-  return getInheritedBackgroundColor(el.parentElement);
+  return getInheritedBackgroundColor(el.parentElement)
 }
 
 function getDefaultBackground() {
   // have to add to the document in order to use getComputedStyle
-  let div = document.createElement("div");
-  document.head.appendChild(div);
-  let bg = window.getComputedStyle(div).backgroundColor;
-  document.head.removeChild(div);
-  return bg;
+  let div = document.createElement('div')
+  document.head.appendChild(div)
+  let bg = window.getComputedStyle(div).backgroundColor
+  document.head.removeChild(div)
+  return bg
 }
 
 export const FormButtonGroup: ComposedButtonGroup = ({
   align,
-  spacing,
+  size,
   ...props
 }) => {
-  const prefixCls = usePrefixCls("button-group");
+  const prefixCls = usePrefixCls('button-group')
   return (
     <Space
       {...props}
-      spacing={spacing}
+      size={size}
       className={cls(prefixCls, props.className)}
       style={{
         ...props.style,
         justifyContent:
-          align === "left"
-            ? "flex-start"
-            : align === "right"
-            ? "flex-end"
-            : "center",
-        display: "flex",
+          align === 'left'
+            ? 'flex-start'
+            : align === 'right'
+            ? 'flex-end'
+            : 'center',
+        display: 'flex',
       }}
     >
       {props.children}
     </Space>
-  );
-};
+  )
+}
 
 FormButtonGroup.defaultProps = {
-  align: "left",
-};
+  align: 'left',
+}
 
-FormButtonGroup.FormItem = ({ spacing, ...props }) => {
+FormButtonGroup.FormItem = ({ size: spacing, ...props }) => {
   return (
     <BaseItem
       {...props}
@@ -104,32 +106,32 @@ FormButtonGroup.FormItem = ({ spacing, ...props }) => {
         margin: 0,
         padding: 0,
         ...props.style,
-        width: "100%",
+        width: '100%',
       }}
       colon={false}
     >
-      {props.children?.["length"] ? (
-        <Space spacing={spacing}>{props.children}</Space>
+      {props.children?.['length'] ? (
+        <Space size={spacing}>{props.children}</Space>
       ) : (
         props.children
       )}
     </BaseItem>
-  );
-};
+  )
+}
 
 FormButtonGroup.Sticky = ({ align, ...props }) => {
-  const ref = useRef();
-  const [color, setColor] = useState("transparent");
-  const prefixCls = usePrefixCls("button-group");
+  const ref = useRef()
+  const [color, setColor] = useState('transparent')
+  const prefixCls = usePrefixCls('button-group')
 
   useLayoutEffect(() => {
     if (ref.current) {
-      const computed = getInheritedBackgroundColor(ref.current);
+      const computed = getInheritedBackgroundColor(ref.current)
       if (computed !== color) {
-        setColor(computed);
+        setColor(computed)
       }
     }
-  });
+  })
   return (
     <StickyBox
       {...props}
@@ -146,21 +148,21 @@ FormButtonGroup.Sticky = ({ align, ...props }) => {
         style={{
           ...props.style,
           justifyContent:
-            align === "left"
-              ? "flex-start"
-              : align === "right"
-              ? "flex-end"
-              : "center",
+            align === 'left'
+              ? 'flex-start'
+              : align === 'right'
+              ? 'flex-end'
+              : 'center',
         }}
       >
         {props.children}
       </div>
     </StickyBox>
-  );
-};
+  )
+}
 
 FormButtonGroup.Sticky.defaultProps = {
-  align: "left",
-};
+  align: 'left',
+}
 
-export default FormButtonGroup;
+export default FormButtonGroup

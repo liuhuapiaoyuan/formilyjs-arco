@@ -1,5 +1,8 @@
-$button-group-prefix-cls: 'formily-semi-button-group';
 
+@import '../__styles__/theme.scss';
+
+$button-group-prefix-cls: '#{$semi-form-prefix}-button-group';
+ 
 .#{$button-group-prefix-cls}-sticky {
   padding: 10px 0;
   border-top: 1px solid rgba(239, 239, 239, 1);

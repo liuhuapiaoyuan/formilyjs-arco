@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react'
-import { Tabs, Badge, Button } from '@arco-design/web-react'
+import { Tabs, Badge } from '@arco-design/web-react'
 import { ArrayField } from '@formily/core'
 import {
   useField,
@@ -10,7 +10,6 @@ import {
 } from '@formily/react'
 import cls from 'classnames'
 import { TabsProps } from '@arco-design/web-react/es/tabs'
-import { IconPlus } from '@arco-design/web-react/icon'
 
 import './index.scss'
 import { usePrefixCls } from '../__builtins__'
