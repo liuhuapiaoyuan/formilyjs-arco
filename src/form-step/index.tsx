@@ -1,144 +1,146 @@
-import React, { Fragment } from "react";
-import { action, model, markRaw } from "@formily/reactive";
-import { Steps } from "@arco-design/web-react";
-import cls from "classnames";
-import { BasicStepsProps } from "@arco-design/web-react/es/steps";
-import { StepProps } from "@arco-design/web-react/es/steps";
-import { Form, VoidField } from "@formily/core";
+import React, { Fragment } from 'react'
+import { action, model, markRaw } from '@formily/reactive'
+import { Steps } from '@arco-design/web-react'
+import cls from 'classnames'
+import type {
+  StepsProps,
+  StepProps,
+} from '@arco-design/web-react/es/steps/interface'
+import { Form, VoidField } from '@formily/core'
 import {
   connect,
   useField,
   observer,
   useFieldSchema,
   RecursionField,
-} from "@formily/react";
-import { Schema, SchemaKey } from "@formily/json-schema";
-import { usePrefixCls } from "../__builtins__";
+} from '@formily/react'
+import { Schema, SchemaKey } from '@formily/json-schema'
+import { usePrefixCls } from '../__builtins__'
 
 export interface IFormStep {
-  connect: (steps: SchemaStep[], field: VoidField) => void;
-  current: number;
-  allowNext: boolean;
-  allowBack: boolean;
-  steps: any[];
-  submit: Form["submit"];
-  setCurrent(key: number): void;
-  next(): void;
-  back(): void;
+  connect: (steps: SchemaStep[], field: VoidField) => void
+  current: number
+  allowNext: boolean
+  allowBack: boolean
+  steps: any[]
+  submit: Form['submit']
+  setCurrent(key: number): void
+  next(): void
+  back(): void
 }
 
-export interface IFormStepProps extends BasicStepsProps {
-  formStep?: IFormStep;
+export interface IFormStepProps extends StepProps {
+  formStep?: IFormStep
 }
 
 type ComposedFormTab = React.FC<IFormStepProps> & {
-  StepPane?: React.FC<StepProps>;
-  createFormStep?: (defaultCurrent?: number) => IFormStep;
-};
+  StepPane?: React.FC<StepsProps>
+  createFormStep?: (defaultCurrent?: number) => IFormStep
+}
 
 type SchemaStep = {
-  name: SchemaKey;
-  props: any;
-  schema: Schema;
-};
+  name: SchemaKey
+  props: any
+  schema: Schema
+}
 
 type FormStepEnv = {
-  form: Form | null;
-  field: VoidField | null;
-  steps: SchemaStep[];
-};
+  form: Form | null
+  field: VoidField | null
+  steps: SchemaStep[]
+}
 
 const parseSteps = (schema: Schema) => {
-  const steps: SchemaStep[] = [];
+  const steps: SchemaStep[] = []
   schema.mapProperties((propertySchema, name) => {
-    if (propertySchema["x-component"]?.indexOf("StepPane") > -1) {
+    if (propertySchema['x-component']?.indexOf('StepPane') > -1) {
       steps.push({
         name,
-        props: propertySchema["x-component-props"],
+        props: propertySchema['x-component-props'],
         schema: propertySchema,
-      });
+      })
     }
-  });
-  return steps;
-};
+  })
+  return steps
+}
 
 const createFormStep = (defaultCurrent = 0): IFormStep => {
   const env: FormStepEnv = {
     form: null,
     field: null,
     steps: [],
-  };
+  }
 
   const setDisplay = action.bound?.((target: number) => {
-    const currentStep = env.steps[target];
+    const currentStep = env.steps[target]
     env.steps.forEach(({ name }) => {
       env.form?.query(`${env.field?.address}.${name}`).take((field) => {
         if (name === currentStep.name) {
-          field.setDisplay("visible");
+          field.setDisplay('visible')
         } else {
-          field.setDisplay("hidden");
+          field.setDisplay('hidden')
         }
-      });
-    });
-  });
+      })
+    })
+  })
 
   const next = action.bound?.(() => {
     if (formStep.allowNext) {
-      setDisplay?.(formStep.current + 1);
-      formStep.setCurrent(formStep.current + 1);
+      setDisplay?.(formStep.current + 1)
+      formStep.setCurrent(formStep.current + 1)
     }
-  });
+  })
 
   const back = action.bound?.(() => {
     if (formStep.allowBack) {
-      setDisplay?.(formStep.current - 1);
-      formStep.setCurrent(formStep.current - 1);
+      setDisplay?.(formStep.current - 1)
+      formStep.setCurrent(formStep.current - 1)
     }
-  });
+  })
 
   const formStep: IFormStep | any = model({
     connect(steps, field) {
-      env.steps = steps;
-      env.form = field?.form;
-      env.field = field;
+      env.steps = steps
+      env.form = field?.form
+      env.field = field
     },
     current: defaultCurrent,
     setCurrent(key: number) {
-      formStep.current = key;
+      formStep.current = key
     },
     get allowNext() {
-      return formStep.current < env.steps.length - 1;
+      return formStep.current < env.steps.length - 1
     },
     get allowBack() {
-      return formStep.current > 0;
+      return formStep.current > 0
     },
     get steps() {
-      return env.steps;
+      return env.steps
     },
     async next() {
       try {
-        await env.form?.validate();
-        next?.();
+        await env.form?.validate()
+        next?.()
       } catch {}
     },
     async back() {
-      back?.();
+      back?.()
     },
     async submit(onSubmit) {
-      return env.form?.submit?.(onSubmit);
+      return env.form?.submit?.(onSubmit)
     },
-  });
-  return markRaw(formStep);
-};
+  })
+  return markRaw(formStep)
+}
 
 export const FormStep: ComposedFormTab = connect(
   observer(({ formStep, className, ...props }: IFormStepProps) => {
-    const field = useField<VoidField>();
-    const prefixCls = usePrefixCls("formily-step", props);
-    const schema = useFieldSchema();
-    const steps = parseSteps(schema);
-    const current = props.current || formStep?.current || 0;
-    formStep?.connect?.(steps, field);
+    const field = useField<VoidField>()
+    const prefixCls = usePrefixCls('formily-step', props)
+    const schema = useFieldSchema()
+    const steps = parseSteps(schema)
+    const current = props.current || formStep?.current || 0
+    formStep?.connect?.(steps, field)
     return (
       <div className={cls(prefixCls, className)}>
         <Steps
@@ -152,20 +154,20 @@ export const FormStep: ComposedFormTab = connect(
         </Steps>
         {steps.map(({ name, schema: stepSchema }, key) => {
           if (key !== current) {
-            return;
+            return
           }
-          return <RecursionField key={key} name={name} schema={stepSchema} />;
+          return <RecursionField key={key} name={name} schema={stepSchema} />
         })}
       </div>
-    );
+    )
   })
-);
+)
 
-const StepPane: React.FC<StepProps> = ({ children }) => (
+const StepPane: React.FC<StepsProps> = ({ children }) => (
   <Fragment>{children}</Fragment>
-);
+)
 
-FormStep.StepPane = StepPane;
-FormStep.createFormStep = createFormStep;
+FormStep.StepPane = StepPane
+FormStep.createFormStep = createFormStep
 
-export default FormStep;
+export default FormStep

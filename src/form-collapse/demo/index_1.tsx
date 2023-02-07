@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react'
 import {
   FormButtonGroup,
   Submit,
   SchemaField,
   FormLayout,
   FormCollapse,
-} from "@formily/semi";
-import { createForm } from "@formily/core";
-import { FormProvider } from "@formily/react";
-import { Button } from "@arco-design/web-react";
+} from '@formily/semi'
+import { createForm } from '@formily/core'
+import { FormProvider } from '@formily/react'
+import { Button } from '@arco-design/web-react'
 
-const form = createForm();
-const formCollapse = FormCollapse.createFormCollapse();
+const form = createForm()
+const formCollapse = FormCollapse.createFormCollapse()
 
 export default () => (
   <FormProvider form={form}>
@@ -28,7 +28,7 @@ export default () => (
           <SchemaField.Void
             name="panel1"
             x-component="FormCollapse.CollapsePanel"
-            x-component-props={{ header: "A1", itemKey: "1" }}
+            x-component-props={{ header: 'A1', name: '1' }}
           >
             <SchemaField.String
               name="aaa"
@@ -41,7 +41,7 @@ export default () => (
           <SchemaField.Void
             name="panel2"
             x-component="FormCollapse.CollapsePanel"
-            x-component-props={{ header: "A2", itemKey: "2" }}
+            x-component-props={{ header: 'A2', name: '2' }}
           >
             <SchemaField.String
               name="bbb"
@@ -54,7 +54,7 @@ export default () => (
           <SchemaField.Void
             name="panel3"
             x-component="FormCollapse.CollapsePanel"
-            x-component-props={{ header: "A3", itemKey: "3" }}
+            x-component-props={{ header: 'A3', name: '3' }}
           >
             <SchemaField.String
               name="ccc"
@@ -69,16 +69,16 @@ export default () => (
       <FormButtonGroup.FormItem>
         <Button
           onClick={() => {
-            form.query("panel3").take((field) => {
-              field.visible = !field.visible;
-            });
+            form.query('panel3').take((field) => {
+              field.visible = !field.visible
+            })
           }}
         >
           显示/隐藏最后一个Tab
         </Button>
         <Button
           onClick={() => {
-            formCollapse.toggleActiveKey("2");
+            formCollapse.toggleActiveKey('2')
           }}
         >
           切换第二个Tab
@@ -87,4 +87,4 @@ export default () => (
       </FormButtonGroup.FormItem>
     </FormLayout>
   </FormProvider>
-);
+)
