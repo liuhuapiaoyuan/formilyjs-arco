@@ -19,12 +19,18 @@ import {
 import { Drawer } from '@arco-design/web-react'
 import { DrawerProps } from '@arco-design/web-react/es/Drawer'
 import {
-  usePrefixCls,
   createPortalProvider,
   createPortalRoot,
   loading,
 } from '../__builtins__'
 
+function isPromise(obj) {
+  return (
+    !!obj && //有实际含义的变量才执行方法，变量null，undefined和''空串都为false
+    (typeof obj === 'object' || typeof obj === 'function') && // 初始promise 或 promise.then返回的
+    typeof obj.then === 'function'
+  )
+}
 type FormDrawerRenderer =
   | React.ReactElement
   | ((form: Form) => React.ReactElement)
@@ -67,6 +73,14 @@ export function FormDrawer(
   renderer: FormDrawerRenderer
 ): IFormDrawer
 export function FormDrawer(title: Title, id: FormDrawerRenderer): IFormDrawer
+
+/**
+ * 渲染一个弹窗
+ * @param title
+ * @param id
+ * @param renderer
+ * @returns
+ */
 export function FormDrawer(title: any, id: any, renderer?: any): IFormDrawer {
   if (isFn(id) || React.isValidElement(id)) {
     renderer = id
@@ -85,35 +99,29 @@ export function FormDrawer(title: any, id: any, renderer?: any): IFormDrawer {
   }
   const root = createPortalRoot(env.host, id)
   const props = getDrawerProps(title)
-  const drawer = {
+  const drawer: IDrawerProps = {
     width: '40%',
     ...props,
     onCancel: (e: any) => {
       if (props?.onCancel?.(e) !== false) {
-        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         formDrawer.close()
       }
     },
-    afterVisibleChange: (visible: boolean) => {
-      if (visible) {
-        props?.afterOpen()
-        return
-      } else {
-        props?.afterClose()
-        root.unmount()
-      }
+    afterClose() {
+      props?.afterClose?.()
+      root.unmount()
     },
   }
 
-  const SideSheetContent = observer(() => (
+  const DrawerContent = observer(() => (
     <Fragment>{isFn(renderer) ? renderer(env.form) : renderer}</Fragment>
   ))
 
   const renderDrawer = (visible = true) => (
-    <Drawer {...drawer} visible={visible}>
+    <Drawer footer={null} {...drawer} visible={visible}>
       {env.form ? (
         <FormProvider form={env.form}>
-          <SideSheetContent />
+          <DrawerContent />
         </FormProvider>
       ) : null}
     </Drawer>
@@ -127,25 +135,25 @@ export function FormDrawer(title: any, id: any, renderer?: any): IFormDrawer {
       }
       return formDrawer
     },
-    open: async (sideSheetProps: IFormProps) => {
+    open: async (drawerProps: IFormProps) => {
       if (env.promise) {
         return env.promise
       }
-      env.promise = new Promise(async (resolve, reject) => {
+      env.promise = new Promise<object>(async (resolve, reject) => {
+        drawerProps = await loading(drawer.loadingText, () =>
+          applyMiddleware(drawerProps, env.openMiddlewares)
+        )
         try {
-          sideSheetProps = await loading(drawer.loadingText, () =>
-            applyMiddleware(sideSheetProps, env.openMiddlewares)
-          )
           env.form =
             env.form ||
             createForm({
-              ...sideSheetProps,
+              ...drawerProps,
               effects(form) {
                 onFormSubmitSuccess(() => {
-                  resolve(toJS(form.values))
+                  resolve(toJS<object>(form.values))
                   formDrawer.close()
                 })
-                sideSheetProps?.effects?.(form)
+                drawerProps?.effects?.(form)
               },
             })
         } catch (e) {
@@ -172,11 +180,9 @@ const DrawerFooter: React.FC = (props) => {
   const ref = useRef<HTMLDivElement>(null)
   const [footer, setFooter] = useState<HTMLDivElement>()
   const footerRef = useRef<HTMLDivElement>()
-  const prefixCls = usePrefixCls('', {
-    prefixCls: 'semi-sidesheet',
-  })
+  const prefixCls = 'arco-drawer'
   useLayoutEffect(() => {
-    const content = ref.current?.closest(`.${prefixCls}-content`)
+    const content = ref.current?.closest(`.${prefixCls}-scroll`)
     if (content) {
       if (!footerRef.current) {
         footerRef.current = content.querySelector(
@@ -193,7 +199,6 @@ const DrawerFooter: React.FC = (props) => {
   })
 
   footerRef.current = footer
-
   return (
     <div ref={ref} style={{ display: 'none' }}>
       {footer && createPortal(props.children, footer)}

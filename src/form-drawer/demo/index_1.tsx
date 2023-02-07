@@ -1,18 +1,21 @@
-import React from "react";
+import React from 'react'
 import {
   FormButtonGroup,
   Submit,
   SchemaField,
-  FormSideSheet,
+  FormDrawer,
   FormLayout,
   Reset,
-} from "@formily/semi";
-import { Button } from "@arco-design/web-react";
+} from '@formily/arco'
+import { Button, Modal } from '@arco-design/web-react'
 
+function delay(timeout: number) {
+  return new Promise((resolve) => setTimeout(resolve, timeout))
+}
 export default () => (
   <Button
     onClick={() => {
-      FormSideSheet("抽屉表单", (resolve) => (
+      FormDrawer('抽屉表单', () => (
         <FormLayout labelCol={6} wrapperCol={10}>
           <SchemaField>
             <SchemaField.String
@@ -44,22 +47,43 @@ export default () => (
               x-component="Input"
             />
           </SchemaField>
-          <FormSideSheet.Footer>
+          <FormDrawer.Footer>
             <FormButtonGroup align="right">
-              <Submit onClick={resolve}>提交</Submit>
+              <Submit
+                onSubmit={(values) => {
+                  return delay(1000).then(() => {
+                    alert('提交后，抛出异常 阻止提交:' + JSON.stringify(values))
+                    return Promise.reject('提交失败')
+                  })
+                }}
+              >
+                {' '}
+                提交{' '}
+              </Submit>
               <Reset>重置</Reset>
             </FormButtonGroup>
-          </FormSideSheet.Footer>
+          </FormDrawer.Footer>
         </FormLayout>
       ))
         .open({
           initialValues: {
-            aaa: "123",
+            aaa: '123',
           },
         })
-        .then(console.log);
+        .then((values) => {
+          Modal.success({
+            title: '提交成功',
+            content: <div>提交数据:{JSON.stringify(values)}</div>,
+          })
+        })
+        .catch((values) => {
+          Modal.error({
+            title: '提交失败',
+            content: <div>提交数据:{JSON.stringify(values)}</div>,
+          })
+        })
     }}
   >
     点我打开表单
   </Button>
-);
+)

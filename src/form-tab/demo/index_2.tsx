@@ -5,7 +5,7 @@ import {
   Input,
   FormButtonGroup,
   Submit,
-} from '@formily/semi'
+} from '@formily/arco'
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField, FormConsumer } from '@formily/react'
 import { Button } from '@arco-design/web-react'

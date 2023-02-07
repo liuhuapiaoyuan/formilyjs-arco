@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react'
 import {
   FormLayout,
-  FormSideSheet,
+  FormDrawer,
   FormItem,
   Input,
   FormButtonGroup,
   Submit,
   Reset,
-} from "@formily/semi";
-import { Field } from "@formily/react";
-import { Button } from "@arco-design/web-react";
+} from '@formily/arco'
+import { Field } from '@formily/react'
+import { Button } from '@arco-design/web-react'
 
 export default () => (
   <Button
     onClick={() => {
-      FormSideSheet("弹窗表单", (resolve) => (
+      FormDrawer('弹窗表单', (resolve) => (
         <FormLayout labelCol={6} wrapperCol={10}>
           <Field
             name="aaa"
@@ -44,22 +44,30 @@ export default () => (
             decorator={[FormItem]}
             component={[Input]}
           />
-          <FormSideSheet.Footer>
+          <FormDrawer.Footer>
             <FormButtonGroup align="right">
-              <Submit onClick={resolve}>提交</Submit>
+              <Submit
+                onSubmit={() => {
+                  return new Promise((resolve) => {
+                    setTimeout(resolve, 1000)
+                  })
+                }}
+              >
+                提交
+              </Submit>
               <Reset>重置</Reset>
             </FormButtonGroup>
-          </FormSideSheet.Footer>
+          </FormDrawer.Footer>
         </FormLayout>
       ))
         .open({
           initialValues: {
-            aaa: "123",
+            aaa: '123',
           },
         })
-        .then(console.log);
+        .then(console.log)
     }}
   >
     点我打开表单
   </Button>
-);
+)

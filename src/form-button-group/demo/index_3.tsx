@@ -5,7 +5,7 @@ import {
   SchemaField,
   FormLayout,
   Reset,
-} from '@formily/semi'
+} from '@formily/arco'
 import { createForm } from '@formily/core'
 import { FormProvider } from '@formily/react'
 

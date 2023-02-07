@@ -1,15 +1,15 @@
-import React from 'react';
-import { FormButtonGroup, Submit, SchemaRender } from '@formily/semi';
-import { createForm } from '@formily/core';
-import { FormProvider } from '@formily/react';
-import { action } from '@formily/reactive';
+import React from 'react'
+import { FormButtonGroup, Submit, SchemaRender } from '@formily/arco'
+import { createForm } from '@formily/core'
+import { FormProvider } from '@formily/react'
+import { action } from '@formily/reactive'
 
-const loadData = async field => {
-  const linkage = field.query('linkage').get('value');
+const loadData = async (field) => {
+  const linkage = field.query('linkage').get('value')
   if (!linkage) {
-    return [];
+    return []
   }
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       if (linkage === 1) {
         resolve([
@@ -57,7 +57,7 @@ const loadData = async field => {
               },
             ],
           },
-        ]);
+        ])
       } else if (linkage === 2) {
         resolve([
           {
@@ -104,23 +104,23 @@ const loadData = async field => {
               },
             ],
           },
-        ]);
+        ])
       }
-    }, 1500);
-  });
-};
+    }, 1500)
+  })
+}
 
-const useAsyncDataSource = service => field => {
-  field.loading = true;
+const useAsyncDataSource = (service) => (field) => {
+  field.loading = true
   service(field).then(
-    action.bound?.(data => {
-      field.dataSource = data;
-      field.loading = false;
+    action.bound?.((data) => {
+      field.dataSource = data
+      field.loading = false
     })
-  );
-};
+  )
+}
 
-const form = createForm();
+const form = createForm()
 
 const schema = {
   type: 'object',
@@ -153,7 +153,7 @@ const schema = {
       'x-reactions': ['{{useAsyncDataSource(loadData)}}'],
     },
   },
-};
+}
 
 export default () => (
   <FormProvider form={form}>
@@ -162,4 +162,4 @@ export default () => (
       <Submit onSubmit={console.log}>提交</Submit>
     </FormButtonGroup>
   </FormProvider>
-);
+)

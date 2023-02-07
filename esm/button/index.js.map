@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"lib/","sources":["button/index.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,wBAAwB,CAAC;AAEhD,OAAO,EAAE,MAAM,EAAE,CAAC;AAElB,eAAe,MAAM,CAAC","sourcesContent":["import { Button } from \"@arco-design/web-react\";\n\nexport { Button };\n\nexport default Button;\n"]}

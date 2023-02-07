@@ -1,16 +1,19 @@
-import React from 'react';
-import { SchemaField } from '@formily/semi';
-import { createForm } from '@formily/core';
-import { FormProvider } from '@formily/react';
+import React from 'react'
+import { SchemaField } from '@formily/arco'
+import { createForm } from '@formily/core'
+import { FormProvider } from '@formily/react'
 
-const Title = props => <h3>{props.text}</h3>;
+const Title = (props) => <h3>{props.text}</h3>
 
-const form = createForm();
+const form = createForm()
 
 export default () => (
   <FormProvider form={form}>
     <SchemaField components={{ Title }}>
-      <SchemaField.Void x-component="Title" x-component-props={{ text: 'label为空时的展示' }} />
+      <SchemaField.Void
+        x-component="Title"
+        x-component-props={{ text: 'label为空时的展示' }}
+      />
       <SchemaField.String
         x-decorator="FormItem"
         x-component="Input"
@@ -26,8 +29,15 @@ export default () => (
           labelWidth: 300,
         }}
       />
-      <SchemaField.Void x-component="Title" x-component-props={{ text: '冒号' }} />
-      <SchemaField.String title="默认" x-decorator="FormItem" x-component="Input" />
+      <SchemaField.Void
+        x-component="Title"
+        x-component-props={{ text: '冒号' }}
+      />
+      <SchemaField.String
+        title="默认"
+        x-decorator="FormItem"
+        x-component="Input"
+      />
       <SchemaField.String
         title="有冒号(colon=true)"
         x-decorator="FormItem"
@@ -37,7 +47,10 @@ export default () => (
         }}
       />
 
-      <SchemaField.Void x-component="Title" x-component-props={{ text: '固定宽度设置' }} />
+      <SchemaField.Void
+        x-component="Title"
+        x-component-props={{ text: '固定宽度设置' }}
+      />
       <SchemaField.String
         title="固定label宽度(labelWidth)"
         x-decorator="FormItem"
@@ -78,7 +91,10 @@ export default () => (
         }}
       />
 
-      <SchemaField.Void x-component="Title" x-component-props={{ text: '对齐方式设置' }} />
+      <SchemaField.Void
+        x-component="Title"
+        x-component-props={{ text: '对齐方式设置' }}
+      />
       <SchemaField.String
         title="label左对齐(labelAlign=left)"
         x-decorator="FormItem"
@@ -128,9 +144,16 @@ export default () => (
         }}
       />
 
-      <SchemaField.Void x-component="Title" x-component-props={{ text: '是否撑满' }} />
+      <SchemaField.Void
+        x-component="Title"
+        x-component-props={{ text: '是否撑满' }}
+      />
 
-      <SchemaField.String title="默认不撑满(fullness=false)" x-decorator="FormItem" x-component="Select" />
+      <SchemaField.String
+        title="默认不撑满(fullness=false)"
+        x-decorator="FormItem"
+        x-component="Select"
+      />
       <SchemaField.String
         title="撑满(fullness=true)"
         x-decorator="FormItem"
@@ -140,7 +163,10 @@ export default () => (
         }}
       />
 
-      <SchemaField.Void x-component="Title" x-component-props={{ text: '辅助信息' }} />
+      <SchemaField.Void
+        x-component="Title"
+        x-component-props={{ text: '辅助信息' }}
+      />
 
       <SchemaField.String
         title="必填星号"
@@ -198,4 +224,4 @@ export default () => (
       />
     </SchemaField>
   </FormProvider>
-);
+)

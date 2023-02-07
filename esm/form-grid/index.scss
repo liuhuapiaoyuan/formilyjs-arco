@@ -1,0 +1,7 @@
+@import '../__styles__/theme.scss';
+
+$form-grid-prefix-cls: '#{$semi-form-prefix}-grid';
+
+.#{$form-grid-prefix-cls}-layout {
+  display: grid;
+}

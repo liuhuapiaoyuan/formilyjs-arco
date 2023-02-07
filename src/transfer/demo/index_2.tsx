@@ -1,9 +1,9 @@
-import React from 'react';
-import { FormButtonGroup, Submit, SchemaRender } from '@formily/semi';
-import { createForm } from '@formily/core';
-import { FormConsumer, FormProvider } from '@formily/react';
+import React from 'react'
+import { FormButtonGroup, Submit, SchemaRender } from '@formily/arco'
+import { createForm } from '@formily/core'
+import { FormConsumer, FormProvider } from '@formily/react'
 
-const form = createForm();
+const form = createForm()
 
 const schema = {
   type: 'object',
@@ -22,9 +22,9 @@ const schema = {
       },
     },
   },
-};
+}
 
-const renderTitle = item => item.title;
+const renderTitle = (item) => item.title
 
 export default () => (
   <FormProvider form={form}>
@@ -36,4 +36,4 @@ export default () => (
       <Submit onSubmit={console.log}>提交</Submit>
     </FormButtonGroup>
   </FormProvider>
-);
+)

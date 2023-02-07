@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"lib/","sources":["tag-input/index.tsx"],"names":[],"mappings":";;;AAAA,oDAAkE;AAErD,QAAA,QAAQ,GAAG,oBAAY,CAAC;AAErC,kBAAe,gBAAQ,CAAC","sourcesContent":["import { InputTag as ArcoTagInput } from \"@arco-design/web-react\";\n\nexport const TagInput = ArcoTagInput;\n\nexport default TagInput;\n"]}

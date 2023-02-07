@@ -1,5 +1,19 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["./src/**/*.js", "./src/**/*.ts", "./src/**/*.tsx"],
-  "exclude": ["./src/__tests__/*"]
+  "include": [
+    "./src/**/*.js",
+    "./src/**/*.ts",
+    "./src/**/*.tsx"
+  ],
+  "exclude": [
+    "./src/__tests__/*"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@formily/arco": [
+        "./src"
+      ]
+    }
+  }
 }

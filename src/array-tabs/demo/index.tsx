@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { FormConsumer, FormProvider, ISchema } from '@formily/react'
-import { SchemaForm } from '@formily/semi'
+import { SchemaForm } from '@formily/arco'
 import { Button, Typography } from '@arco-design/web-react'
 import { createForm } from '@formily/core'
 

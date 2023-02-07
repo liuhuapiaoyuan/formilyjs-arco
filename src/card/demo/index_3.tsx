@@ -1,9 +1,16 @@
-import React from 'react';
-import { Input, FormItem, FormLayout, FormButtonGroup, Submit, Card } from '@formily/semi';
-import { createForm } from '@formily/core';
-import { FormProvider, Field, VoidField } from '@formily/react';
+import React from 'react'
+import {
+  Input,
+  FormItem,
+  FormLayout,
+  FormButtonGroup,
+  Submit,
+  Card,
+} from '@formily/arco'
+import { createForm } from '@formily/core'
+import { FormProvider, Field, VoidField } from '@formily/react'
 
-const form = createForm();
+const form = createForm()
 
 export default () => (
   <FormProvider form={form}>
@@ -20,8 +27,18 @@ export default () => (
         ]}
         component={[Card, { style: { marginBottom: '8px' } }]}
       >
-        <Field name="firstName" decorator={[FormItem]} component={[Input]} required />
-        <Field name="lastName" decorator={[FormItem]} component={[Input]} required />
+        <Field
+          name="firstName"
+          decorator={[FormItem]}
+          component={[Input]}
+          required
+        />
+        <Field
+          name="lastName"
+          decorator={[FormItem]}
+          component={[Input]}
+          required
+        />
       </VoidField>
       <VoidField
         name="texts"
@@ -74,4 +91,4 @@ export default () => (
       </FormButtonGroup.FormItem>
     </FormLayout>
   </FormProvider>
-);
+)

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Reset, Upload, FormItem } from '@formily/semi'
+import { Form, Reset, Upload, FormItem } from '@formily/arco'
 import { createForm } from '@formily/core'
 import { FormConsumer, Field, FormProvider } from '@formily/react'
 import { Input, Typography } from '@arco-design/web-react'

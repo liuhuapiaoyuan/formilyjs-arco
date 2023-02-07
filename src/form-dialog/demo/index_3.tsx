@@ -1,12 +1,12 @@
-import React from "react";
-import { FormDialog, FormItem, FormLayout, Input } from "@formily/semi";
-import { Field } from "@formily/react";
-import { Button } from "@arco-design/web-react";
+import React from 'react'
+import { FormDialog, FormItem, FormLayout, Input } from '@formily/arco'
+import { Field } from '@formily/react'
+import { Button } from '@arco-design/web-react'
 
 export default () => (
   <Button
     onClick={() => {
-      FormDialog("弹窗表单", () => (
+      FormDialog('弹窗表单', () => (
         <FormLayout labelCol={6} wrapperCol={10}>
           <Field
             name="aaa"
@@ -45,27 +45,27 @@ export default () => (
           setTimeout(() => {
             next({
               initialValues: {
-                aaa: "123",
+                aaa: '123',
               },
-            });
-          }, 1000);
+            })
+          }, 1000)
         })
         .forConfirm((form, next) => {
           setTimeout(() => {
-            console.log(form);
-            next(form);
-          }, 1000);
+            console.log(form)
+            next(form)
+          }, 1000)
         })
         .forCancel((form, next) => {
           setTimeout(() => {
-            console.log(form);
-            next(form);
-          }, 1000);
+            console.log(form)
+            next(form)
+          }, 1000)
         })
         .open()
-        .then(console.log);
+        .then(console.log)
     }}
   >
     点我打开表单
   </Button>
-);
+)

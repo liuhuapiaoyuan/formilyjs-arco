@@ -5,7 +5,7 @@ import {
   ArrayCollapse,
   FormButtonGroup,
   Submit,
-} from '@formily/semi'
+} from '@formily/arco'
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField, FormConsumer } from '@formily/react'
 import { Button } from '@arco-design/web-react'
@@ -41,6 +41,7 @@ export default () => {
             x-component="ArrayCollapse.CollapsePanel"
             x-component-props={{
               header: '字符串数组',
+              name: 'array_0',
             }}
           >
             <SchemaField.Void x-component="ArrayCollapse.Index" />
@@ -70,6 +71,7 @@ export default () => {
             x-component="ArrayCollapse.CollapsePanel"
             x-component-props={{
               header: '对象数组',
+              name: 'array_1',
             }}
           >
             <SchemaField.Void x-component="ArrayCollapse.Index" />
@@ -102,6 +104,7 @@ export default () => {
             x-component="ArrayCollapse.CollapsePanel"
             x-component-props={{
               header: '字符串数组',
+              name: 'array_2',
             }}
           >
             <SchemaField.Void x-component="ArrayCollapse.Index" />

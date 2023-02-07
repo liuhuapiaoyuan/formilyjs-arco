@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormGrid } from '@formily/semi'
+import { FormGrid } from '@formily/arco'
 
 const { GridColumn } = FormGrid
 const Cell = ({ children }) => {

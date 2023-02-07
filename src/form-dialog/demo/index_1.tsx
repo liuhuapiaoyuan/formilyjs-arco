@@ -1,26 +1,26 @@
-import React, { createContext, useContext } from "react";
-import { FormDialog, FormItem, FormLayout, Input } from "@formily/semi";
-import { createSchemaField } from "@formily/react";
-import { Button } from "@arco-design/web-react";
+import React, { createContext, useContext } from 'react'
+import { FormDialog, FormItem, FormLayout, Input } from '@formily/arco'
+import { createSchemaField } from '@formily/react'
+import { Button } from '@arco-design/web-react'
 
 const SchemaField = createSchemaField({
   components: {
     FormItem,
     Input,
   },
-});
+})
 
-const Context = createContext(null);
+const Context = createContext(null)
 
-const PortalId = "可以传，也可以不传的ID，默认是form-dialog";
+const PortalId = '可以传，也可以不传的ID，默认是form-dialog'
 
 export default () => (
   <Context.Provider value="自定义上下文可以直接传到弹窗内部，只需要ID一致即可">
     <FormDialog.Portal id={PortalId}>
       <Button
         onClick={() => {
-          FormDialog("弹窗表单", PortalId, (form) => {
-            console.log(useContext(Context));
+          FormDialog('弹窗表单', PortalId, (form) => {
+            console.log(useContext(Context))
             return (
               <FormLayout labelCol={6} wrapperCol={10}>
                 <SchemaField>
@@ -59,36 +59,36 @@ export default () => (
                   </span>
                 </FormDialog.Footer>
               </FormLayout>
-            );
+            )
           })
             .forOpen((formInst, next) => {
               setTimeout(() => {
                 next({
                   initialValues: {
-                    aaa: "123",
+                    aaa: '123',
                   },
-                });
-              }, 1000);
+                })
+              }, 1000)
             })
             .forConfirm((formInst, next) => {
               setTimeout(() => {
-                console.log(formInst);
-                next(formInst);
-              }, 1000);
+                console.log(formInst)
+                next(formInst)
+              }, 1000)
             })
             .forCancel((formInst, next) => {
               setTimeout(() => {
-                console.log(formInst);
-                next(formInst);
-              }, 1000);
+                console.log(formInst)
+                next(formInst)
+              }, 1000)
             })
             .open()
             .then(console.log)
-            .catch(console.error);
+            .catch(console.error)
         }}
       >
         点我打开表单
       </Button>
     </FormDialog.Portal>
   </Context.Provider>
-);
+)

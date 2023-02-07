@@ -1,11 +1,11 @@
-import React from "react";
-import { SchemaField } from "@formily/semi";
-import { createForm } from "@formily/core";
-import { FormProvider } from "@formily/react";
-import { IconCheck, IconLoading } from "@arco-design/web-react/icon";
+import React from 'react'
+import { SchemaField } from '@formily/arco'
+import { createForm } from '@formily/core'
+import { FormProvider } from '@formily/react'
+import { IconCheck, IconLoading } from '@arco-design/web-react/icon'
 
-const Title = (props) => <h3>{props.text}</h3>;
-const form = createForm();
+const Title = (props) => <h3>{props.text}</h3>
+const form = createForm()
 
 export default () => (
   <FormProvider form={form}>
@@ -16,7 +16,7 @@ export default () => (
         x-component="Input"
         description="description"
         x-decorator-props={{
-          feedbackStatus: "error",
+          feedbackStatus: 'error',
         }}
       />
 
@@ -26,7 +26,7 @@ export default () => (
         x-component="Input"
         description="description"
         x-decorator-props={{
-          feedbackStatus: "warning",
+          feedbackStatus: 'warning',
         }}
       />
 
@@ -36,8 +36,8 @@ export default () => (
         x-component="Input"
         description="description"
         x-decorator-props={{
-          feedbackStatus: "success",
-          feedbackIcon: <IconCheck style={{ color: "#52c41a" }} />,
+          feedbackStatus: 'success',
+          feedbackIcon: <IconCheck style={{ color: '#52c41a' }} />,
         }}
       />
 
@@ -47,14 +47,14 @@ export default () => (
         x-component="Input"
         description="description"
         x-decorator-props={{
-          feedbackStatus: "pending",
-          feedbackIcon: <IconLoading style={{ color: "#1890ff" }} />,
+          feedbackStatus: 'pending',
+          feedbackIcon: <IconLoading style={{ color: '#1890ff' }} />,
         }}
       />
 
       <SchemaField.Void
         x-component="Title"
-        x-component-props={{ text: "反馈信息的布局" }}
+        x-component-props={{ text: '反馈信息的布局' }}
       />
 
       <SchemaField.String
@@ -63,7 +63,7 @@ export default () => (
         x-component="Input"
         required
         x-decorator-props={{
-          feedbackLayout: "terse",
+          feedbackLayout: 'terse',
         }}
       />
 
@@ -72,9 +72,9 @@ export default () => (
         x-decorator="FormItem"
         x-component="Input"
         x-decorator-props={{
-          feedbackStatus: "error",
-          feedbackText: "error message",
-          feedbackLayout: "terse",
+          feedbackStatus: 'error',
+          feedbackText: 'error message',
+          feedbackLayout: 'terse',
         }}
       />
 
@@ -83,7 +83,7 @@ export default () => (
         x-decorator="FormItem"
         x-component="Input"
         x-decorator-props={{
-          feedbackLayout: "terse",
+          feedbackLayout: 'terse',
         }}
       />
 
@@ -92,9 +92,9 @@ export default () => (
         x-decorator="FormItem"
         x-component="Input"
         x-decorator-props={{
-          feedbackStatus: "error",
-          feedbackText: "error message",
-          feedbackLayout: "loose",
+          feedbackStatus: 'error',
+          feedbackText: 'error message',
+          feedbackLayout: 'loose',
         }}
       />
 
@@ -103,9 +103,9 @@ export default () => (
         x-decorator="FormItem"
         x-component="Input"
         x-decorator-props={{
-          feedbackStatus: "warning",
-          feedbackText: "warning message",
-          feedbackLayout: "popover",
+          feedbackStatus: 'warning',
+          feedbackText: 'warning message',
+          feedbackLayout: 'popover',
         }}
       />
 
@@ -114,9 +114,9 @@ export default () => (
         x-decorator="FormItem"
         x-component="Input"
         x-decorator-props={{
-          feedbackStatus: "error",
-          feedbackText: "error message",
-          feedbackLayout: "popover",
+          feedbackStatus: 'error',
+          feedbackText: 'error message',
+          feedbackLayout: 'popover',
         }}
       />
       <SchemaField.String
@@ -124,27 +124,27 @@ export default () => (
         x-decorator="FormItem"
         x-component="Input"
         x-decorator-props={{
-          feedbackStatus: "success",
-          feedbackText: "success message",
-          feedbackLayout: "popover",
+          feedbackStatus: 'success',
+          feedbackText: 'success message',
+          feedbackLayout: 'popover',
         }}
       />
 
       <SchemaField.Void
         x-component="Title"
-        x-component-props={{ text: "组件的适配情况" }}
+        x-component-props={{ text: '组件的适配情况' }}
       />
       <SchemaField.Void
         x-component="FormLayout"
-        x-component-props={{ layout: "vertical" }}
+        x-component-props={{ layout: 'vertical' }}
       >
         <SchemaField.String
           title="Select"
           x-decorator="FormItem"
           x-component="Select"
           x-decorator-props={{
-            feedbackStatus: "success",
-            feedbackIcon: <IconCheck style={{ color: "#52c41a" }} />,
+            feedbackStatus: 'success',
+            feedbackIcon: <IconCheck style={{ color: '#52c41a' }} />,
           }}
         />
 
@@ -153,8 +153,8 @@ export default () => (
           x-decorator="FormItem"
           x-component="DatePicker"
           x-decorator-props={{
-            feedbackStatus: "success",
-            feedbackIcon: <IconCheck style={{ color: "#52c41a" }} />,
+            feedbackStatus: 'success',
+            feedbackIcon: <IconCheck style={{ color: '#52c41a' }} />,
           }}
         />
         <SchemaField.String
@@ -162,8 +162,8 @@ export default () => (
           x-decorator="FormItem"
           x-component="TimePicker"
           x-decorator-props={{
-            feedbackStatus: "success",
-            feedbackIcon: <IconCheck style={{ color: "#52c41a" }} />,
+            feedbackStatus: 'success',
+            feedbackIcon: <IconCheck style={{ color: '#52c41a' }} />,
           }}
         />
         <SchemaField.String
@@ -171,8 +171,8 @@ export default () => (
           x-decorator="FormItem"
           x-component="InputNumber"
           x-decorator-props={{
-            feedbackStatus: "success",
-            feedbackIcon: <IconCheck style={{ color: "#52c41a" }} />,
+            feedbackStatus: 'success',
+            feedbackIcon: <IconCheck style={{ color: '#52c41a' }} />,
           }}
         />
 
@@ -181,8 +181,8 @@ export default () => (
           x-decorator="FormItem"
           x-component="TreeSelect"
           x-decorator-props={{
-            feedbackStatus: "success",
-            feedbackIcon: <IconCheck style={{ color: "#52c41a" }} />,
+            feedbackStatus: 'success',
+            feedbackIcon: <IconCheck style={{ color: '#52c41a' }} />,
           }}
         />
 
@@ -191,11 +191,11 @@ export default () => (
           x-decorator="FormItem"
           x-component="Cascader"
           x-decorator-props={{
-            feedbackStatus: "success",
-            feedbackIcon: <IconCheck style={{ color: "#52c41a" }} />,
+            feedbackStatus: 'success',
+            feedbackIcon: <IconCheck style={{ color: '#52c41a' }} />,
           }}
         />
       </SchemaField.Void>
     </SchemaField>
   </FormProvider>
-);
+)

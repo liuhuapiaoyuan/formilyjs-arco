@@ -1,12 +1,12 @@
 import React from 'react'
 import {
-  FormSideSheet,
+  FormDrawer,
   FormLayout,
   Submit,
   Reset,
   FormButtonGroup,
   SchemaRender,
-} from '@formily/semi'
+} from '@formily/arco'
 import { Button } from '@arco-design/web-react'
 import { Form } from '@formily/core'
 
@@ -47,15 +47,16 @@ const schema = {
 export default () => (
   <Button
     onClick={() => {
-      FormSideSheet('弹窗表单', (form: Form) => (
+      FormDrawer('弹窗表单', () => (
         <FormLayout labelCol={6} wrapperCol={10}>
           <SchemaRender schema={schema} />
-          <FormSideSheet.Footer>
+          <FormDrawer.Footer>
             <FormButtonGroup align="right">
-              <Submit onClick={form.submit}>提交</Submit>
+              {/* 此处处理提交内容 */}
+              <Submit onSubmit={console.log}>提交</Submit>
               <Reset>重置</Reset>
             </FormButtonGroup>
-          </FormSideSheet.Footer>
+          </FormDrawer.Footer>
         </FormLayout>
       ))
         .forOpen((form, next) => {

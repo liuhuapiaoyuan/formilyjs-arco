@@ -1,54 +1,54 @@
-import React from "react";
-import { FormDialog, FormItem, FormLayout, Input } from "@formily/semi";
-import { createSchemaField } from "@formily/react";
-import { Button } from "@arco-design/web-react";
+import React from 'react'
+import { FormDialog, FormItem, FormLayout, Input } from '@formily/arco'
+import { createSchemaField } from '@formily/react'
+import { Button } from '@arco-design/web-react'
 
 const SchemaField = createSchemaField({
   components: {
     FormItem,
     Input,
   },
-});
+})
 
 const schema = {
-  type: "object",
+  type: 'object',
   properties: {
     aaa: {
-      type: "string",
-      title: "输入框1",
+      type: 'string',
+      title: '输入框1',
       required: true,
-      "x-decorator": "FormItem",
-      "x-component": "Input",
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
     },
     bbb: {
-      type: "string",
-      title: "输入框2",
+      type: 'string',
+      title: '输入框2',
       required: true,
-      "x-decorator": "FormItem",
-      "x-component": "Input",
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
     },
     ccc: {
-      type: "string",
-      title: "输入框3",
+      type: 'string',
+      title: '输入框3',
       required: true,
-      "x-decorator": "FormItem",
-      "x-component": "Input",
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
     },
     ddd: {
-      type: "string",
-      title: "输入框4",
+      type: 'string',
+      title: '输入框4',
       required: true,
-      "x-decorator": "FormItem",
-      "x-component": "Input",
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
     },
   },
-};
+}
 
 export default () => (
   <FormDialog.Portal>
     <Button
       onClick={() => {
-        FormDialog("弹窗表单", () => (
+        FormDialog('弹窗表单', () => (
           <FormLayout labelCol={6} wrapperCol={10}>
             <SchemaField schema={schema} />
             <FormDialog.Footer>
@@ -60,28 +60,28 @@ export default () => (
             setTimeout(() => {
               next({
                 initialValues: {
-                  aaa: "123",
+                  aaa: '123',
                 },
-              });
-            }, 1000);
+              })
+            }, 1000)
           })
           .forConfirm((form, next) => {
             setTimeout(() => {
-              console.log(form);
-              next(form);
-            }, 1000);
+              console.log(form)
+              next(form)
+            }, 1000)
           })
           .forCancel((form, next) => {
             setTimeout(() => {
-              console.log(form);
-              next(form);
-            }, 1000);
+              console.log(form)
+              next(form)
+            }, 1000)
           })
           .open()
-          .then(console.log);
+          .then(console.log)
       }}
     >
       点我打开表单
     </Button>
   </FormDialog.Portal>
-);
+)

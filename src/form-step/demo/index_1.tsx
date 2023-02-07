@@ -1,11 +1,11 @@
-import React from "react";
-import { FormButtonGroup, FormStep, SchemaField } from "@formily/semi";
-import { createForm } from "@formily/core";
-import { FormProvider, FormConsumer } from "@formily/react";
-import { Button } from "@arco-design/web-react";
+import React from 'react'
+import { FormButtonGroup, FormStep, SchemaField } from '@formily/arco'
+import { createForm } from '@formily/core'
+import { FormProvider, FormConsumer } from '@formily/react'
+import { Button } from '@arco-design/web-react'
 
-const form = createForm();
-const formStep = FormStep.createFormStep();
+const form = createForm()
+const formStep = FormStep.createFormStep()
 
 export default () => (
   <FormProvider form={form}>
@@ -13,7 +13,7 @@ export default () => (
       <SchemaField.Void x-component="FormStep" x-component-props={{ formStep }}>
         <SchemaField.Void
           x-component="FormStep.StepPane"
-          x-component-props={{ title: "第一步" }}
+          x-component-props={{ title: '第一步' }}
         >
           <SchemaField.String
             name="aaa"
@@ -24,7 +24,7 @@ export default () => (
         </SchemaField.Void>
         <SchemaField.Void
           x-component="FormStep.StepPane"
-          x-component-props={{ title: "第二步" }}
+          x-component-props={{ title: '第二步' }}
         >
           <SchemaField.String
             name="bbb"
@@ -36,7 +36,7 @@ export default () => (
         <SchemaField.Void
           type="void"
           x-component="FormStep.StepPane"
-          x-component-props={{ title: "第三步" }}
+          x-component-props={{ title: '第三步' }}
         >
           <SchemaField.String
             name="ccc"
@@ -53,7 +53,7 @@ export default () => (
           <Button
             disabled={!formStep.allowBack}
             onClick={() => {
-              formStep.back();
+              formStep.back()
             }}
           >
             上一步
@@ -61,7 +61,7 @@ export default () => (
           <Button
             disabled={!formStep.allowNext}
             onClick={() => {
-              formStep.next();
+              formStep.next()
             }}
           >
             下一步
@@ -69,7 +69,7 @@ export default () => (
           <Button
             disabled={formStep.allowNext}
             onClick={() => {
-              formStep.submit(console.log);
+              formStep.submit(console.log)
             }}
           >
             提交
@@ -78,4 +78,4 @@ export default () => (
       )}
     </FormConsumer>
   </FormProvider>
-);
+)

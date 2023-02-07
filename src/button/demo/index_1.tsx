@@ -1,14 +1,9 @@
-import React from "react";
-import {
-  FormButtonGroup,
-  Submit,
-  SchemaField,
-  FormLayout,
-} from "@formily/semi";
-import { createForm } from "@formily/core";
-import { FormProvider } from "@formily/react";
+import React from 'react'
+import { FormButtonGroup, Submit, SchemaField, FormLayout } from '@formily/arco'
+import { createForm } from '@formily/core'
+import { FormProvider } from '@formily/react'
 
-const form = createForm();
+const form = createForm()
 
 export default () => (
   <FormProvider form={form}>
@@ -18,14 +13,14 @@ export default () => (
           title="姓名"
           x-decorator="FormItem"
           x-component="Input"
-          x-component-props={{ style: { marginBottom: "8px" } }}
+          x-component-props={{ style: { marginBottom: '8px' } }}
         />
         <SchemaField.Void
           x-component="Button"
           x-component-props={{
-            style: { marginBottom: "8px" },
+            style: { marginBottom: '8px' },
             onClick() {
-              console.log("onclick");
+              console.log('onclick')
             },
           }}
           x-content="Button"
@@ -36,4 +31,4 @@ export default () => (
       </FormButtonGroup.FormItem>
     </FormLayout>
   </FormProvider>
-);
+)

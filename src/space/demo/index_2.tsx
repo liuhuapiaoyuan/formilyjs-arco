@@ -1,9 +1,14 @@
-import React from 'react';
-import { SchemaRender, FormLayout, FormButtonGroup, Submit } from '@formily/semi';
-import { createForm } from '@formily/core';
-import { FormProvider } from '@formily/react';
+import React from 'react'
+import {
+  SchemaRender,
+  FormLayout,
+  FormButtonGroup,
+  Submit,
+} from '@formily/arco'
+import { createForm } from '@formily/core'
+import { FormProvider } from '@formily/react'
 
-const form = createForm();
+const form = createForm()
 
 const schema = {
   type: 'object',
@@ -85,7 +90,7 @@ const schema = {
       required: true,
     },
   },
-};
+}
 
 export default () => (
   <FormProvider form={form}>
@@ -96,4 +101,4 @@ export default () => (
       </FormButtonGroup.FormItem>
     </FormLayout>
   </FormProvider>
-);
+)

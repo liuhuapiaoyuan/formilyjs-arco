@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react'
 import {
   FormTab,
   FormItem,
   Input,
   FormButtonGroup,
   Submit,
-} from "@formily/semi";
-import { createForm } from "@formily/core";
-import { FormProvider, createSchemaField } from "@formily/react";
-import { Button } from "@arco-design/web-react";
+} from '@formily/arco'
+import { createForm } from '@formily/core'
+import { FormProvider, createSchemaField } from '@formily/react'
+import { Button } from '@arco-design/web-react'
 
 const SchemaField = createSchemaField({
   components: {
@@ -16,10 +16,10 @@ const SchemaField = createSchemaField({
     FormTab,
     Input,
   },
-});
+})
 
-const form = createForm();
-const formTab = FormTab.createFormTab?.("tab1");
+const form = createForm()
+const formTab = FormTab.createFormTab?.('tab1')
 
 export default () => {
   return (
@@ -29,7 +29,7 @@ export default () => {
           <SchemaField.Void
             name="tab1"
             x-component="FormTab.TabPane"
-            x-component-props={{ tab: "A1" }}
+            x-component-props={{ tab: 'A1' }}
           >
             <SchemaField.String
               name="aaa"
@@ -42,7 +42,7 @@ export default () => {
           <SchemaField.Void
             name="tab2"
             x-component="FormTab.TabPane"
-            x-component-props={{ tab: "A2" }}
+            x-component-props={{ tab: 'A2' }}
           >
             <SchemaField.String
               name="bbb"
@@ -55,7 +55,7 @@ export default () => {
           <SchemaField.Void
             name="tab3"
             x-component="FormTab.TabPane"
-            x-component-props={{ tab: "A3" }}
+            x-component-props={{ tab: 'A3' }}
           >
             <SchemaField.String
               name="ccc"
@@ -70,16 +70,16 @@ export default () => {
       <FormButtonGroup.FormItem>
         <Button
           onClick={() => {
-            form.query("tab3").take((field) => {
-              field.visible = !field.visible;
-            });
+            form.query('tab3').take((field) => {
+              field.visible = !field.visible
+            })
           }}
         >
           显示/隐藏最后一个Tab
         </Button>
         <Button
           onClick={() => {
-            formTab?.setActiveKey("tab2");
+            formTab?.setActiveKey('tab2')
           }}
         >
           切换第二个Tab
@@ -87,5 +87,5 @@ export default () => {
         <Submit onSubmit={console.log}>提交</Submit>
       </FormButtonGroup.FormItem>
     </FormProvider>
-  );
-};
+  )
+}

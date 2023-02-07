@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormItem, Input, FormGrid } from '@formily/semi'
+import { FormItem, Input, FormGrid } from '@formily/arco'
 import { FormProvider, createSchemaField } from '@formily/react'
 import { createForm } from '@formily/core'
 

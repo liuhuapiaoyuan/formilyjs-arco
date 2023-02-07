@@ -1,6 +1,7 @@
 const path = require("path");
 
 function resolve(dir) {
+  console.log("path.join(__dirname, dir)" ,path.join(__dirname, dir))
   return path.join(__dirname, dir);
 }
 
@@ -8,9 +9,9 @@ export default {
   outputPath: "site",
   exportStatic: {},
   mode: "site",
-  title: "@formily/semi",
+  title: "@formily/arco",
   alias: {
-    "@formily/semi": resolve("src"),
+    "@formily/arco":resolve("src")
   },
   links: [{ rel: "stylesheet", href: "/style.css" }],
   manifest: {},

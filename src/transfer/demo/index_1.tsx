@@ -1,9 +1,9 @@
-import React from 'react';
-import { FormButtonGroup, Submit, SchemaField } from '@formily/semi';
-import { createForm } from '@formily/core';
-import { FormConsumer, FormProvider } from '@formily/react';
+import React from 'react'
+import { FormButtonGroup, Submit, SchemaField } from '@formily/arco'
+import { createForm } from '@formily/core'
+import { FormConsumer, FormProvider } from '@formily/react'
 
-const form = createForm();
+const form = createForm()
 
 export default () => (
   <FormProvider form={form}>
@@ -18,7 +18,7 @@ export default () => (
           { label: '选项2', key: 2, value: 2 },
         ]}
         x-component-props={{
-          render: item => item.label,
+          render: (item) => item.label,
         }}
       />
     </SchemaField>
@@ -29,4 +29,4 @@ export default () => (
       <Submit onSubmit={console.log}>提交</Submit>
     </FormButtonGroup>
   </FormProvider>
-);
+)

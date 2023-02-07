@@ -10,7 +10,7 @@ function renderChildren(children?: React.ReactNode) {
   if (Array.isArray(children)) {
     return children.map(renderChildren)
   }
-  if (ReactIs.isFragment(children)) {
+  if (React.isValidElement(children) && ReactIs.isFragment(children)) {
     return renderChildren(children.props.children)
   }
 

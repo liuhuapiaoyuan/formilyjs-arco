@@ -1,9 +1,9 @@
-import React from 'react';
-import { Input, FormItem, FormButtonGroup, Submit } from '@formily/semi';
-import { createForm } from '@formily/core';
-import { FormProvider, Field } from '@formily/react';
+import React from 'react'
+import { Input, FormItem, FormButtonGroup, Submit } from '@formily/arco'
+import { createForm } from '@formily/core'
+import { FormProvider, Field } from '@formily/react'
 
-const form = createForm();
+const form = createForm()
 
 export default () => (
   <FormProvider form={form}>
@@ -25,4 +25,4 @@ export default () => (
       <Submit onSubmit={console.log}>提交</Submit>
     </FormButtonGroup>
   </FormProvider>
-);
+)

@@ -1,0 +1,22 @@
+import React from 'react';
+import { InputProps } from '@arco-design/web-react/es/input';
+import { SelectProps } from '@arco-design/web-react/es/select';
+import { TreeSelectProps } from '@arco-design/web-react/es/treeSelect';
+import { CascaderProps } from '@arco-design/web-react/es/cascader';
+import { DatePickerProps } from '@arco-design/web-react/es/datePicker';
+import { TimePickerProps } from '@arco-design/web-react/es/timePicker';
+import './index.scss';
+export declare const PreviewText: {
+    (props: React.PropsWithChildren<any>): JSX.Element;
+    Input: React.FC<InputProps>;
+    Select: React.FC<SelectProps>;
+    TreeSelect: React.FC<TreeSelectProps>;
+    Cascader: React.FC<CascaderProps<any>>;
+    DatePicker: React.FC<DatePickerProps>;
+    DateRangePicker: React.FC<DatePickerProps>;
+    TimePicker: React.FC<TimePickerProps>;
+    TimeRangePicker: React.FC<TimePickerProps>;
+    Placeholder: React.Provider<React.ReactNode>;
+    usePlaceholder: (value?: any) => any;
+};
+export default PreviewText;

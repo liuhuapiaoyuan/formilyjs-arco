@@ -1,5 +1,5 @@
 import React from 'react'
-import { Select, FormItem, FormButtonGroup, Submit } from '@formily/semi'
+import { Select, FormItem, FormButtonGroup, Submit } from '@formily/arco'
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField, ISchema } from '@formily/react'
 import { action } from '@formily/reactive'
@@ -57,8 +57,8 @@ const SchemaField = createSchemaField({
   },
   scope: {
     useAsyncDataSource,
-    loadData
-  }
+    loadData,
+  },
 })
 
 const form = createForm()
@@ -95,8 +95,8 @@ const schema: any = {
         dependencies: ['linkage'],
         fulfill: {
           schema: { 'x-visible': '{{$deps[0] !== undefined}}' },
-          run: 'useAsyncDataSource(loadData($deps[0]))($self)'
-        }
+          run: 'useAsyncDataSource(loadData($deps[0]))($self)',
+        },
       },
     },
   },

@@ -1,4 +1,4 @@
-# @formily/semi
+# @formily/arco
 
 > Formily Component Adaptor
 
@@ -13,7 +13,7 @@ https://semi.formilyjs.org/
 ## Install
 
 ```bash
-npm install @formily/semi --save
+npm install @formily/arco --save
 ```
 
 necessary peerDependencies：
@@ -26,7 +26,7 @@ $ npm i -S @formily/core @formily/react @arco-design/web-react
 
 ```typescript
 import React, { useCallback } from "react";
-import { SchemaForm } from "@formily/semi";
+import { SchemaForm } from "@formily/arco";
 import { ISchema } from "@formily/json-schema";
 import { useRef } from "react";
 import { Button } from "@arco-design/web-react";

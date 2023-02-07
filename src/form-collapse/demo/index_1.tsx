@@ -5,7 +5,7 @@ import {
   SchemaField,
   FormLayout,
   FormCollapse,
-} from '@formily/semi'
+} from '@formily/arco'
 import { createForm } from '@formily/core'
 import { FormProvider } from '@formily/react'
 import { Button } from '@arco-design/web-react'

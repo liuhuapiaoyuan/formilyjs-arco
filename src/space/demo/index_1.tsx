@@ -1,9 +1,9 @@
-import React from 'react';
-import { FormButtonGroup, Submit, SchemaField, FormLayout } from '@formily/semi';
-import { createForm } from '@formily/core';
-import { FormProvider } from '@formily/react';
+import React from 'react'
+import { FormButtonGroup, Submit, SchemaField, FormLayout } from '@formily/arco'
+import { createForm } from '@formily/core'
+import { FormProvider } from '@formily/react'
 
-const form = createForm();
+const form = createForm()
 
 export default () => (
   <FormProvider form={form}>
@@ -18,8 +18,18 @@ export default () => (
           }}
           x-component="Space"
         >
-          <SchemaField.String name="firstName" x-decorator="FormItem" x-component="Input" required />
-          <SchemaField.String name="lastName" x-decorator="FormItem" x-component="Input" required />
+          <SchemaField.String
+            name="firstName"
+            x-decorator="FormItem"
+            x-component="Input"
+            required
+          />
+          <SchemaField.String
+            name="lastName"
+            x-decorator="FormItem"
+            x-component="Input"
+            required
+          />
         </SchemaField.Void>
         <SchemaField.Void
           title="文本串联"
@@ -76,4 +86,4 @@ export default () => (
       </FormButtonGroup.FormItem>
     </FormLayout>
   </FormProvider>
-);
+)

@@ -1,13 +1,13 @@
 {
-  "name": "@formily/semi",
+  "name": "@formilyjs/arco",
   "version": "1.0.1-beta.12",
-  "homepage": "https://github.com/formilyjs/semi#readme",
+  "homepage": "https://github.com/formilyjs/arco#readme",
   "bugs": {
-    "url": "https://github.com/formilyjs/semi/issues"
+    "url": "https://github.com/formilyjs/arco/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/formilyjs/semi.git"
+    "url": "git+https://github.com/formilyjs/arco.git"
   },
   "license": "MIT",
   "sideEffects": [
@@ -20,9 +20,9 @@
     "**/*/style.js"
   ],
   "main": "lib",
-  "umd:main": "dist/formily.semi.umd.production.js",
-  "jsdelivr": "dist/formily.semi.umd.production.js",
-  "unpkg": "dist/formily.semi.umd.production.js",
+  "umd:main": "dist/formily.arco.umd.production.js",
+  "jsdelivr": "dist/formily.arco.umd.production.js",
+  "unpkg": "dist/formily.arco.umd.production.js",
   "module": "esm",
   "jsnext:main": "esm",
   "typings": "lib/index.d.ts",
@@ -68,7 +68,8 @@
     "npm": ">=3.0.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
   "gitHead": "fb959223aaa3b7b1e67119b3f513e41c5708c1e8"
 }

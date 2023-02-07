@@ -1,20 +1,20 @@
-import React, { useCallback } from "react";
-import { SchemaForm } from "@formily/semi";
-import { ISchema } from "@formily/json-schema";
-import { useRef } from "react";
-import { Button } from "@arco-design/web-react";
+import React, { useCallback } from 'react'
+import { SchemaForm } from '@formily/arco'
+import { ISchema } from '@formily/json-schema'
+import { useRef } from 'react'
+import { Button } from '@arco-design/web-react'
 
 const schema = {
-  type: "object",
+  type: 'object',
   properties: {
     select: {
-      type: "string",
-      "x-decorator": "FormItem",
-      "x-component": "Select",
-      "x-reactions": "{{useAsyncDataSource(loadData)}}",
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'Select',
+      'x-reactions': '{{useAsyncDataSource(loadData)}}',
     },
   },
-} as ISchema;
+} as ISchema
 
 const scope = {
   async loadData() {
@@ -22,28 +22,28 @@ const scope = {
       setTimeout(() => {
         resolve([
           {
-            label: "CCC",
-            value: "ccc",
+            label: 'CCC',
+            value: 'ccc',
           },
           {
-            label: "DDD",
-            value: "ddd",
+            label: 'DDD',
+            value: 'ddd',
           },
-        ]);
-      }, 1000);
-    });
+        ])
+      }, 1000)
+    })
   },
-};
+}
 
 export default () => {
-  const formRef = useRef<any>();
+  const formRef = useRef<any>()
   const handleClick = useCallback(() => {
-    console.log(formRef?.current?.getForm()?.values);
-  }, []);
+    console.log(formRef?.current?.getForm()?.values)
+  }, [])
   return (
     <div className="wrap">
       <SchemaForm ref={formRef} schema={schema} scope={scope} />
       <Button onClick={handleClick}>点击测试</Button>
     </div>
-  );
-};
+  )
+}

@@ -1,0 +1,11 @@
+
+@import '../__styles__/theme.scss';
+
+$form-layout-cls: '#{$semi-form-prefix}-layout';
+$form-cls: '#{$semi-form-prefix}-form';
+
+
+.#{$form-cls}-inline {
+  display: flex;
+  flex-wrap: wrap;
+}

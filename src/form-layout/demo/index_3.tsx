@@ -6,7 +6,7 @@ import {
   FormButtonGroup,
   Submit,
   FormLayout,
-} from '@formily/semi'
+} from '@formily/arco'
 import { createForm } from '@formily/core'
 import { FormProvider, Field } from '@formily/react'
 

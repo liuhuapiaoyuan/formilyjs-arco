@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  Password,
-  FormItem,
-  FormLayout,
-  Submit,
-} from '@formily/semi'
+import { Password, FormItem, FormLayout, Submit } from '@formily/arco'
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/react'
 

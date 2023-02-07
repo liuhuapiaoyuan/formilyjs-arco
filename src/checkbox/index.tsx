@@ -1,21 +1,24 @@
-import { connect, mapProps } from "@formily/react";
-import { Checkbox as ArcoCheckbox } from "@arco-design/web-react";
-import { CheckboxProps } from "@arco-design/web-react/es/checkbox";
-import { CheckboxGroupProps } from "@arco-design/web-react/es/checkbox";
-import CheckboxGroup from "../checkbox-group";
+import { connect, mapProps } from '@formily/react'
+import { Checkbox as ArcoCheckbox } from '@arco-design/web-react'
+import type { CheckboxProps } from '@arco-design/web-react/es/checkbox'
+import type { CheckboxGroupProps } from '@arco-design/web-react/es/checkbox/interface'
+import CheckboxGroup from '../checkbox-group'
+import { ReactText } from 'react'
 
-type ComposedCheckbox = React.FC<CheckboxProps> & {
-  Group: React.FC<CheckboxGroupProps>;
-};
+type ComposedCheckbox<T extends ReactText = any> = React.FC<
+  CheckboxProps<T>
+> & {
+  Group: React.FC<CheckboxGroupProps<T>>
+}
 
 export const Checkbox: ComposedCheckbox = connect(
   ArcoCheckbox,
   mapProps({
-    value: "checked",
-    onInput: "onChange",
+    value: 'checked',
+    onInput: 'onChange',
   })
-) as unknown as ComposedCheckbox;
+) as unknown as ComposedCheckbox
 
-Checkbox.Group = CheckboxGroup;
+Checkbox.Group = CheckboxGroup
 
-export default Checkbox;
+export default Checkbox

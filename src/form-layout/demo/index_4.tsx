@@ -1,9 +1,16 @@
 import React from 'react'
-import { Input, ArrayItems, FormItem, FormLayout, Select, DatePicker } from '@formily/semi';
+import {
+  Input,
+  ArrayItems,
+  FormItem,
+  FormLayout,
+  Select,
+  DatePicker,
+} from '@formily/arco'
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/react'
 
-import config from './config';
+import config from './config'
 
 const SF = createSchemaField({
   components: {
@@ -12,7 +19,7 @@ const SF = createSchemaField({
     FormLayout,
     ArrayItems,
     Select,
-    DatePicker
+    DatePicker,
   },
 })
 
@@ -32,7 +39,6 @@ export default () => (
             labelCol: 6,
             wrapperCol: 10,
             size: 'small',
-
           }}
         >
           <SF.String
@@ -41,7 +47,7 @@ export default () => (
             x-decorator="FormItem"
             x-component="Input"
             x-decorator-props={{
-              direction: 'rtl'
+              direction: 'rtl',
             }}
             required
           />
@@ -50,9 +56,7 @@ export default () => (
             title="输入框"
             x-decorator="FormItem"
             x-component="Input"
-            x-component-props={{
-
-            }}
+            x-component-props={{}}
             required
           />
         </SF.Void>

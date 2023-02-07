@@ -1,9 +1,9 @@
-import React from "react";
-import { SchemaField } from "@formily/semi";
-import { createForm } from "@formily/core";
-import { FormProvider } from "@formily/react";
+import React from 'react'
+import { SchemaField } from '@formily/arco'
+import { createForm } from '@formily/core'
+import { FormProvider } from '@formily/react'
 
-const form = createForm();
+const form = createForm()
 
 export default () => (
   <FormProvider form={form}>
@@ -16,7 +16,7 @@ export default () => (
         <SchemaField.Void
           name="step1"
           x-component="FormStepPro.StepPane"
-          x-component-props={{ title: "第一步" }}
+          x-component-props={{ title: '第一步' }}
         >
           <SchemaField.String
             name="aaa"
@@ -28,7 +28,7 @@ export default () => (
         <SchemaField.Void
           name="step2"
           x-component="FormStepPro.StepPane"
-          x-component-props={{ title: "第二步" }}
+          x-component-props={{ title: '第二步' }}
         >
           <SchemaField.String
             name="bbb"
@@ -41,7 +41,7 @@ export default () => (
           name="step3"
           type="void"
           x-component="FormStepPro.StepPane"
-          x-component-props={{ title: "第三步" }}
+          x-component-props={{ title: '第三步' }}
         >
           <SchemaField.String
             name="ccc"
@@ -53,19 +53,19 @@ export default () => (
         <SchemaField.Void
           name="previous"
           x-component="FormStepPro.Previous"
-          x-component-props={{ text: "上一步" }}
+          x-component-props={{ text: '上一步' }}
         />
         <SchemaField.Void
           name="next"
           x-component="FormStepPro.Next"
-          x-component-props={{ text: "下一步" }}
+          x-component-props={{ text: '下一步' }}
         />
         <SchemaField.Void
           name="submit"
           x-component="FormStepPro.Submit"
-          x-component-props={{ text: "提交" }}
+          x-component-props={{ text: '提交' }}
         />
       </SchemaField.Void>
     </SchemaField>
   </FormProvider>
-);
+)

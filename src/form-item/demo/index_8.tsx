@@ -1,9 +1,9 @@
-import React from 'react';
-import { SchemaField } from '@formily/semi';
-import { createForm, Field, onFieldChange } from '@formily/core';
-import { FormProvider } from '@formily/react';
+import React from 'react'
+import { SchemaField } from '@formily/arco'
+import { createForm, Field, onFieldChange } from '@formily/core'
+import { FormProvider } from '@formily/react'
 
-const Div = props => <div>{props.children}</div>
+const Div = (props) => <div>{props.children}</div>
 
 const form = createForm({
   values: {
@@ -11,14 +11,14 @@ const form = createForm({
   },
   effects: () => {
     onFieldChange('size', ['value'], (field: Field, form) => {
-      form.setFieldState('sizeWrap.*', state => {
+      form.setFieldState('sizeWrap.*', (state) => {
         if (state.decorator[1]) {
-          state.decorator[1].size = field.value;
+          state.decorator[1].size = field.value
         }
-      });
-    });
+      })
+    })
   },
-});
+})
 
 export default () => (
   <FormProvider form={form}>
@@ -35,7 +35,13 @@ export default () => (
         ]}
       />
       <SchemaField.Void name="sizeWrap" x-component="Div">
-        <SchemaField.String name="input" title="Input" x-decorator="FormItem" x-component="Input" required />
+        <SchemaField.String
+          name="input"
+          title="Input"
+          x-decorator="FormItem"
+          x-component="Input"
+          required
+        />
         <SchemaField.String
           name="select1"
           title="Multiple Select"
@@ -77,7 +83,13 @@ export default () => (
           }}
           required
         />
-        <SchemaField.String name="Cascader" title="Cascader" x-decorator="FormItem" x-component="Cascader" required />
+        <SchemaField.String
+          name="Cascader"
+          title="Cascader"
+          x-decorator="FormItem"
+          x-component="Cascader"
+          required
+        />
         <SchemaField.String
           name="DatePicker"
           title="DatePicker"
@@ -99,8 +111,14 @@ export default () => (
           x-component="TreeSelect"
           required
         />
-        <SchemaField.String name="Switch" title="Switch" x-decorator="FormItem" x-component="Switch" required />
+        <SchemaField.String
+          name="Switch"
+          title="Switch"
+          x-decorator="FormItem"
+          x-component="Switch"
+          required
+        />
       </SchemaField.Void>
     </SchemaField>
   </FormProvider>
-);
+)

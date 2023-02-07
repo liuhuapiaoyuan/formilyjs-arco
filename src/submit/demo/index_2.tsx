@@ -1,14 +1,20 @@
-import React from 'react';
-import { FormButtonGroup, Submit, SchemaField } from '@formily/semi';
-import { createForm } from '@formily/core';
-import { FormProvider } from '@formily/react';
+import React from 'react'
+import { FormButtonGroup, Submit, SchemaField } from '@formily/arco'
+import { createForm } from '@formily/core'
+import { FormProvider } from '@formily/react'
 
-const form = createForm();
+const form = createForm()
 
 export default () => (
   <FormProvider form={form}>
     <SchemaField>
-      <SchemaField.String name="input" title="输入框" required x-decorator="FormItem" x-component="Input" />
+      <SchemaField.String
+        name="input"
+        title="输入框"
+        required
+        x-decorator="FormItem"
+        x-component="Input"
+      />
       <SchemaField.String
         name="input2"
         title="输入框"
@@ -20,12 +26,12 @@ export default () => (
     </SchemaField>
     <FormButtonGroup>
       <Submit
-        onSubmit={values =>
-          new Promise(resolve => {
+        onSubmit={(values) =>
+          new Promise((resolve) => {
             setTimeout(() => {
-              console.log(values);
-              resolve(true);
-            }, 2000);
+              console.log(values)
+              resolve(true)
+            }, 2000)
           })
         }
       >
@@ -33,4 +39,4 @@ export default () => (
       </Submit>
     </FormButtonGroup>
   </FormProvider>
-);
+)

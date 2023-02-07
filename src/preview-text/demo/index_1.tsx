@@ -1,5 +1,5 @@
 import React from 'react'
-import { PreviewText, FormItem, FormLayout } from '@formily/semi'
+import { PreviewText, FormItem, FormLayout } from '@formily/arco'
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/react'
 
@@ -28,7 +28,7 @@ export default () => {
             title="选择项预览"
             x-component="PreviewText.Select"
             x-component-props={{
-              multiple: true
+              multiple: true,
             }}
             default={['123', '222']}
             enum={[

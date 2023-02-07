@@ -3,7 +3,9 @@
   "compilerOptions": {
     "outDir": "./lib",
     "paths": {
-      "@formily/*": ["packages/*"]
+      "@formily/*": [
+        "packages/*/src"
+      ]
     },
     "declaration": true
   }

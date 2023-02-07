@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react'
 import {
   PreviewText,
   FormItem,
   FormLayout,
   FormButtonGroup,
-} from "@formily/semi";
-import { createForm } from "@formily/core";
+} from '@formily/arco'
+import { createForm } from '@formily/core'
 import {
   FormProvider,
   mapReadPretty,
   connect,
   createSchemaField,
-} from "@formily/react";
-import { Button, Input as ArcoInput } from "@arco-design/web-react";
+} from '@formily/react'
+import { Button, Input as ArcoInput } from '@arco-design/web-react'
 
-const Input = connect(ArcoInput, mapReadPretty(PreviewText.Input));
+const Input = connect(ArcoInput, mapReadPretty(PreviewText.Input))
 
 const SchemaField = createSchemaField({
   components: {
@@ -22,9 +22,9 @@ const SchemaField = createSchemaField({
     FormItem,
     PreviewText,
   },
-});
+})
 
-const form = createForm();
+const form = createForm()
 
 export default () => {
   return (
@@ -38,7 +38,7 @@ export default () => {
               title="文本预览"
               required
               x-component="Input"
-              default={"Hello world"}
+              default={'Hello world'}
             />
             <SchemaField.Markup
               type="string"
@@ -48,10 +48,10 @@ export default () => {
               x-component-props={{
                 multiple: true,
               }}
-              default={["123", "222"]}
+              default={['123', '222']}
               enum={[
-                { label: "A111", value: "123" },
-                { label: "A222", value: "222" },
+                { label: 'A111', value: '123' },
+                { label: 'A222', value: '222' },
               ]}
             />
             <SchemaField.Markup
@@ -65,15 +65,15 @@ export default () => {
               x-decorator="FormItem"
               title="Cascader预览"
               x-component="PreviewText.Cascader"
-              default={["hangzhou", "yuhang"]}
+              default={['hangzhou', 'yuhang']}
               enum={[
                 {
-                  label: "杭州",
-                  value: "hangzhou",
+                  label: '杭州',
+                  value: 'hangzhou',
                 },
                 {
-                  label: "余杭",
-                  value: "yuhang",
+                  label: '余杭',
+                  value: 'yuhang',
                 },
               ]}
             />
@@ -82,8 +82,8 @@ export default () => {
             <Button
               onClick={() => {
                 form.setState((state) => {
-                  state.editable = !state.editable;
-                });
+                  state.editable = !state.editable
+                })
               }}
             >
               切换阅读态
@@ -92,5 +92,5 @@ export default () => {
         </FormProvider>
       </FormLayout>
     </PreviewText.Placeholder>
-  );
-};
+  )
+}
