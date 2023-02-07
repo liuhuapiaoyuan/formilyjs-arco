@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   FormSideSheet,
   FormLayout,
@@ -6,48 +6,48 @@ import {
   Reset,
   FormButtonGroup,
   SchemaRender,
-} from "@formily/semi";
-import { Button } from "@arco-design/web-react";
-import { Form } from "@formily/core";
+} from '@formily/semi'
+import { Button } from '@arco-design/web-react'
+import { Form } from '@formily/core'
 
 const schema = {
-  type: "object",
+  type: 'object',
   properties: {
     aaa: {
-      type: "string",
-      title: "输入框1",
+      type: 'string',
+      title: '输入框1',
       required: true,
-      "x-decorator": "FormItem",
-      "x-component": "Input",
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
     },
     bbb: {
-      type: "string",
-      title: "输入框2",
+      type: 'string',
+      title: '输入框2',
       required: true,
-      "x-decorator": "FormItem",
-      "x-component": "Input",
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
     },
     ccc: {
-      type: "string",
-      title: "输入框3",
+      type: 'string',
+      title: '输入框3',
       required: true,
-      "x-decorator": "FormItem",
-      "x-component": "Input",
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
     },
     ddd: {
-      type: "string",
-      title: "输入框4",
+      type: 'string',
+      title: '输入框4',
       required: true,
-      "x-decorator": "FormItem",
-      "x-component": "Input",
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
     },
   },
-};
+}
 
 export default () => (
   <Button
     onClick={() => {
-      FormSideSheet("弹窗表单", (form: Form) => (
+      FormSideSheet('弹窗表单', (form: Form) => (
         <FormLayout labelCol={6} wrapperCol={10}>
           <SchemaRender schema={schema} />
           <FormSideSheet.Footer>
@@ -62,15 +62,15 @@ export default () => (
           setTimeout(() => {
             next({
               initialValues: {
-                aaa: "123",
+                aaa: '123',
               },
-            });
-          }, 1000);
+            })
+          }, 1000)
         })
         .open()
-        .then(console.log);
+        .then(console.log)
     }}
   >
     点我打开表单
   </Button>
-);
+)

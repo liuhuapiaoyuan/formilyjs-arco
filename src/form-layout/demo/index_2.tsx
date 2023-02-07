@@ -9,7 +9,7 @@ const SchemaField = createSchemaField({
     Select,
     FormItem,
     FormLayout,
-    ArrayItems
+    ArrayItems,
   },
 })
 
@@ -22,6 +22,7 @@ const schema = {
       'x-component-props': {
         labelCol: 6,
         wrapperCol: 10,
+        layout: 'vertical',
       },
       properties: {
         input: {
@@ -30,6 +31,9 @@ const schema = {
           required: true,
           'x-decorator': 'FormItem',
           'x-component': 'Input',
+          'x-component-props': {
+            fullness: true,
+          },
         },
         select: {
           type: 'string',

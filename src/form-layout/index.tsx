@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from 'react'
 import { usePrefixCls } from '../__builtins__/hooks'
 import cls from 'classnames'
-import './index.scss';
+import './index.scss'
 
 export interface IFormLayoutProps {
   prefixCls?: string
@@ -39,7 +39,6 @@ export const FormLayout: React.FC<IFormLayoutProps> & {
   useFormLayout: () => IFormLayoutProps
   useFormShallowLayout: () => IFormLayoutProps
 } = ({ shallow, children, prefixCls, className, style, ...props }) => {
-
   const formPrefixCls = usePrefixCls('form')
   const semiRtlPrefixCls = usePrefixCls('', { prefixCls: 'semi-rtl' })
   const layoutPrefixCls = usePrefixCls('layout', { prefixCls })

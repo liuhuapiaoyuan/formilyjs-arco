@@ -14,7 +14,7 @@ const form = createForm()
 
 export default () => (
   <FormProvider form={form}>
-    <FormLayout labelCol={6} wrapperCol={10}>
+    <FormLayout layout="inline">
       <Field
         name="input"
         required

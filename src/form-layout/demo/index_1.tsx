@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Select, FormItem, FormLayout } from '@formily/semi';
+import { Input, Select, FormItem, FormLayout } from '@formily/semi'
 import { createForm } from '@formily/core'
 import { FormProvider, createSchemaField } from '@formily/react'
 
@@ -22,7 +22,7 @@ export default () => (
         x-component-props={{
           labelCol: 6,
           wrapperCol: 10,
-          size: 'small'
+          size: 'small',
         }}
       >
         <SchemaField.String
@@ -30,9 +30,7 @@ export default () => (
           title="输入框"
           x-decorator="FormItem"
           x-component="Input"
-          x-component-props={{
-
-          }}
+          x-component-props={{}}
           required
         />
         <SchemaField.String
